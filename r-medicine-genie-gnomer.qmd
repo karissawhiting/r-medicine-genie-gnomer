@@ -22,6 +22,7 @@ knitr::opts_chunk$set(echo = TRUE, results = 'asis')
 library(tidyverse)
 library(gtsummary)
 
+# let's check if reg gt tables work now. if so, ditch this
 knit_print.gtsummary <- function(x, ...) {
    gtsummary::as_gt(x) |>
      gt::as_raw_html()
@@ -95,9 +96,10 @@ select_unique_ngs slide
 
 - show/highlight which args help data processing issues in the next few slides
 
-```{r}
+```{r }
 #| output-location: "column"
 #| echo: true
+#| eval: false
 gnomeR::create_gene_binary(mutation = gnomeR::mutations) %>%
   head()
 ```
@@ -141,23 +143,32 @@ Highlight Gene Alias and Gene NA panel annotation
 # {genieBPC} + {gnomeR} Pipeline
 
 ![](images/genie-gnomer-pipline.png)
+## Case Study??
 
-## Analyzing Data: Issues To Address
+Maybe use a case study as example. If so, add an analysis slide with clinical endpoint data
+
+## Analyzing Data: Issues/Steps To Address
 
 EDIT THIS DOWN AND ALSO ADD PATHWAYS 
 
-1) **OncoKB Annotation**
-    - Some studies may require oncoKB annotation of data
-    
+1) **Summarizing on Alteration or Gene Levels** 
+
 2) **Multiple Testing and False Positives**
     - Very low prevalence genes are often not very informative in standard IMPACT analyses. Choose a threshold (e.g. 1% or 5 %) _a prior_ to limit number of tests. 
     - Report q-value (adjusted for multiple testing)
     
+2) **Limited Power To Detect With Sparse Alterations**  
+- Pathways
+
+MAKE THIS MORE GENERAL, Maybe add a slide on Z score - omit maybe 
 3) **Analyzing Tumor Mutation Burden Across Samples**
     - Although TMB is always measured as number of mutations per coding area, depth of sequencing can make this measure inconsistent between studies. 
     - Usually ok within IMPACT studies but not always comparable with WES studies
 
-4) **Survival Analysis Biases**
+4) **OncoKB Annotation**
+    - Some studies may require oncoKB annotation of data
+    
+5) CNA segmentation data???? - Maybe 
 
 ## Analyzing Data: Summarize Data with tbl_genomic()
 
@@ -176,6 +187,8 @@ Use summarize_by_gene() first
 
 ## Analyzing Data: Multiple Testing
 
+Ct=u t this down or omit
+
 - Because each hypothesis test has a probability of producing a type I error (falsely rejecting a null hypothesis that is true), performing a large number of hypothesis tests virtually guarantees the presence of type I errors among the findings.
 
 - Firstly, depending on size of data and type of analysis, choose a prevalence threshold for genes to test
@@ -184,17 +197,21 @@ Use summarize_by_gene() first
 
 - Reference: Goeman JJ, Solari A. Multiple hypothesis testing in genomics. Stat Med. 2014 May 20;33(11):1946-78. doi: 10.1002/sim.6082. Epub 2014 Jan 8. PMID: 24399688.
 
+Keep this 
 Helper Functions for Multiple Testing: 
 
 - subset_by_frequency
 - subset_by_panel 
 - tbl_genomic()
 
+## Analyzing Data: Pathways
+
 ## Analyzing Data: Data Visualization
 
 - could also mention color palettes 
+- CNA heatmap?
 
 ## Misc
 - oncoKB
 - oncoprints, etc 
-
+- CNA?

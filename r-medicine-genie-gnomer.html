@@ -467,10 +467,6 @@
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(<span class="at">mutation =</span> gnomeR<span class="sc">::</span>mutations) <span class="sc">%&gt;%</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
-<section id="a-tibble-6-228" class="title-slide slide level1 center">
-<h1>A tibble: 6 × 228</h1>
-<p>sample_id PARP1 AKT1 ALK APC AR ARAF RHOA ZFHX3 ATM ATR ATRX <chr> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> 1 P-0001128-T… 1 1 0 0 0 0 0 0 0 0 0 2 P-0001859-T… 1 0 0 1 0 0 0 0 0 0 0 3 P-0001895-T… 1 0 1 0 0 0 0 0 0 0 0 4 P-0001845-T… 0 1 0 0 0 0 0 0 0 0 0 5 P-0005570-T… 0 1 0 0 0 0 0 0 0 0 0 6 P-0001768-T… 0 0 1 0 0 0 0 0 0 0 0 # ℹ 216 more variables: BARD1 <dbl>, CCND1 <dbl>, BCL6 <dbl>, PRDM1 <dbl>, # BLM <dbl>, BMPR1A <dbl>, FOXL2 <dbl>, BRCA1 <dbl>, BRAF <dbl>, BRCA2 <dbl>, # RUNX1 <dbl>, CBL <dbl>, CD79B <dbl>, CDH1 <dbl>, CDK4 <dbl>, CDK8 <dbl>, # CDKN1A <dbl>, CDKN2C <dbl>, CREBBP <dbl>, CSF1R <dbl>, CSF3R <dbl>, # CTLA4 <dbl>, CTNNB1 <dbl>, DAXX <dbl>, DNMT1 <dbl>, EGFR <dbl>, # EP300 <dbl>, EPHA3 <dbl>, EPHA5 <dbl>, EPHB1 <dbl>, ERBB2 <dbl>, # ERBB3 <dbl>, ERBB4 <dbl>, ERCC2 <dbl>, ERCC3 <dbl>, ERCC5 <dbl>, …</dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></dbl></chr></p>
-</section>
 
 </div>
 </div>
@@ -504,27 +500,32 @@
 <section>
 <section id="geniebpc-gnomer-pipeline-1" class="title-slide slide level1 center">
 <h1>{genieBPC} + {gnomeR} Pipeline</h1>
-
-<img data-src="images/genie-gnomer-pipline.png" class="r-stretch"></section>
-<section id="analyzing-data-issues-to-address" class="slide level2">
-<h2>Analyzing Data: Issues To Address</h2>
+<p><img data-src="images/genie-gnomer-pipline.png"> ## Case Study??</p>
+<p>Maybe use a case study as example. If so, add an analysis slide with clinical endpoint data</p>
+</section>
+<section id="analyzing-data-issuessteps-to-address" class="slide level2">
+<h2>Analyzing Data: Issues/Steps To Address</h2>
 <p>EDIT THIS DOWN AND ALSO ADD PATHWAYS</p>
 <ol type="1">
-<li><strong>OncoKB Annotation</strong>
-<ul>
-<li>Some studies may require oncoKB annotation of data</li>
-</ul></li>
-<li><strong>Multiple Testing and False Positives</strong>
+<li><p><strong>Summarizing on Alteration or Gene Levels</strong></p></li>
+<li><p><strong>Multiple Testing and False Positives</strong></p>
 <ul>
 <li>Very low prevalence genes are often not very informative in standard IMPACT analyses. Choose a threshold (e.g.&nbsp;1% or 5 %) <em>a prior</em> to limit number of tests.</li>
 <li>Report q-value (adjusted for multiple testing)</li>
 </ul></li>
-<li><strong>Analyzing Tumor Mutation Burden Across Samples</strong>
+<li><p><strong>Limited Power To Detect With Sparse Alterations</strong><br>
+</p></li>
+</ol>
 <ul>
-<li>Although TMB is always measured as number of mutations per coding area, depth of sequencing can make this measure inconsistent between studies.</li>
-<li>Usually ok within IMPACT studies but not always comparable with WES studies</li>
+<li>Pathways</li>
+</ul>
+<p>MAKE THIS MORE GENERAL, Maybe add a slide on Z score - omit maybe 3) <strong>Analyzing Tumor Mutation Burden Across Samples</strong> - Although TMB is always measured as number of mutations per coding area, depth of sequencing can make this measure inconsistent between studies. - Usually ok within IMPACT studies but not always comparable with WES studies</p>
+<ol start="4" type="1">
+<li><strong>OncoKB Annotation</strong>
+<ul>
+<li>Some studies may require oncoKB annotation of data</li>
 </ul></li>
-<li><strong>Survival Analysis Biases</strong></li>
+<li>CNA segmentation data???? - Maybe</li>
 </ol>
 </section>
 <section id="analyzing-data-summarize-data-with-tbl_genomic" class="slide level2">
@@ -536,23 +537,28 @@
 </section>
 <section id="analyzing-data-multiple-testing" class="slide level2">
 <h2>Analyzing Data: Multiple Testing</h2>
+<p>Ct=u t this down or omit</p>
 <ul>
 <li><p>Because each hypothesis test has a probability of producing a type I error (falsely rejecting a null hypothesis that is true), performing a large number of hypothesis tests virtually guarantees the presence of type I errors among the findings.</p></li>
 <li><p>Firstly, depending on size of data and type of analysis, choose a prevalence threshold for genes to test</p></li>
 <li><p><span class="emphasized">Report tests with adjustment</span>- Recommended to use false discovery rate adjustment as opposed to FWER (eg. bonferroni) as it controls for a low proportion of false positives, instead of guarding against making any false positive conclusion at all</p></li>
 <li><p>Reference: Goeman JJ, Solari A. Multiple hypothesis testing in genomics. Stat Med. 2014 May 20;33(11):1946-78. doi: 10.1002/sim.6082. Epub 2014 Jan 8. PMID: 24399688.</p></li>
 </ul>
-<p>Helper Functions for Multiple Testing:</p>
+<p>Keep this Helper Functions for Multiple Testing:</p>
 <ul>
 <li>subset_by_frequency</li>
 <li>subset_by_panel</li>
 <li>tbl_genomic()</li>
 </ul>
 </section>
+<section id="analyzing-data-pathways" class="slide level2">
+<h2>Analyzing Data: Pathways</h2>
+</section>
 <section id="analyzing-data-data-visualization" class="slide level2">
 <h2>Analyzing Data: Data Visualization</h2>
 <ul>
 <li>could also mention color palettes</li>
+<li>CNA heatmap?</li>
 </ul>
 </section>
 <section id="misc" class="slide level2">
@@ -560,6 +566,7 @@
 <ul>
 <li>oncoKB</li>
 <li>oncoprints, etc</li>
+<li>CNA?</li>
 </ul>
 <div class="footer footer-default">
 
