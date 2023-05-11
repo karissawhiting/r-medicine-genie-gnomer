@@ -1,0 +1,41 @@
+/*-- scss:defaults --*/
+$presentation-heading-color: "#007CBA";
+$presentation-font-size-root: 30px;
+$code-block-font-size: 0.6em;
+$presentation-h1-font-size: 2.8em;
+$presentation-h2-font-size: 1.8em;
+$custom-col: #DF4602;
+
+/*-- scss:rules --*/
+
+details>summary {
+  font-size: 0.75em;
+}
+
+.smaller {
+  font-size: 0.5em;
+}
+
+.small {
+  font-size: 0.75em;
+}
+
+.larger {
+  font-size: 1.5em;
+}
+
+.largest {
+  font-size: 3em;
+}
+
+.emphasized {
+  font-weight: bold;
+  color: $custom-col;
+}
+
+.reveal .slide .v-center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+}
