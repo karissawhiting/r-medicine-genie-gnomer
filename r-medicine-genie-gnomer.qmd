@@ -49,14 +49,22 @@ fa_fill <- "#606060"
 
 ## Processing Data: Issues To Address
 
-1)  **Research Samples vs. IMPACT Samples**
-    -   Some samples may be sequenced outside MSK or using different panels. You can usually tell by the sample ID (if P-000XXX-T0X-IMX, it is likely IMPACT with IMX indicating panel)
+    
+1) **Multiple Samples Per Patient**
+
 2)  **Cohort Inclusion**
     -   Samples with no alterations may be dropped when pulling data
+
 3)  **Data Formats & Gene Standards Often Inconsistent**
     -   Column names, data formats and gene names may differ between studies or even within studies!
-4)  **Missing Data in Mutation Status**
+    
+4)  **Multi-Institutional Studies Use Several Gene Panels**
+    -   Some samples may be sequenced using different panels therefore the non overlapping genes have to be annotated as missing
+
+
+5)  **Missing Data in Mutation Status**
     -   Mutation Status is sometimes missing data.
+
     
     
 
@@ -79,10 +87,13 @@ MAYBE THIS SLIDE GOES AT END as RECAP AFTER WE SHOW FUNCTIONS?
     -   [Check Mutation Status column]{.emphasized}
 
 
+## Process Data: Select One Sample Per Patient
 
-## Process Data in Matrix
+select_unique_ngs slide
 
-- show/highlight which args help data processing issues 
+## Process Data: Format Data in Analysis-ready Matrix
+
+- show/highlight which args help data processing issues in the next few slides
 
 ```{r}
 #| output-location: "column"
@@ -91,7 +102,17 @@ gnomeR::create_gene_binary(mutation = gnomeR::mutations) %>%
   head()
 ```
 
-## Process Data in Matrix: Multi-institutional Panels
+## Process Data: Ensure Samples with No Alterations Are included
+
+- samples arg
+
+```{r}
+
+```
+
+
+## Process Data: Gene Aliases
+
 
 Highlight Gene Alias and Gene NA panel annotation
 
@@ -99,9 +120,27 @@ Highlight Gene Alias and Gene NA panel annotation
 
 ```
 
+
+## Process Data: Multi-institutional Panels
+
+Highlight Gene Alias and Gene NA panel annotation
+
+```{r}
+
+```
+
+## Process Data: Missing Mutation Data & Data Filters
+
+-Does this occur with GENIE data where there are NAs for variant classification /mutation type?
+
+- we may not need this slide
+
+
 # Analyzing Data {background-color="#007CBA" style="text-align: center;"}
 
 ## Analyzing Data: Issues To Address
+
+EDIT THIS DOWN AND ALSO ADD PATHWAYS 
 
 1) **OncoKB Annotation**
     - Some studies may require oncoKB annotation of data
@@ -116,13 +155,14 @@ Highlight Gene Alias and Gene NA panel annotation
 
 4) **Survival Analysis Biases**
 
-## Summarize Data with tbl_genomic()
+## Analyzing Data: Summarize Data with tbl_genomic()
 
 ```{r}
 
 ```
 
-## Summarize Data with tbl_genomic()
+## Analyzing Data: Summarize Data with tbl_genomic()
+
 May want to analyze on the gene level only
 Use summarize_by_gene() first
 
@@ -140,9 +180,16 @@ Use summarize_by_gene() first
 
 - Reference: Goeman JJ, Solari A. Multiple hypothesis testing in genomics. Stat Med. 2014 May 20;33(11):1946-78. doi: 10.1002/sim.6082. Epub 2014 Jan 8. PMID: 24399688.
 
-## Helper Functions for Multiple Testing
+Helper Functions for Multiple Testing: 
 
 - subset_by_frequency
 - subset_by_panel 
 - tbl_genomic()
+
+## Analyzing Data: Data Visualization
+
+- could also mention color palettes 
+## Misc
+- oncoKB
+- oncoprints, etc 
 
