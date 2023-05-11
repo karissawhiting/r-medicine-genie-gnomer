@@ -138,6 +138,10 @@ Highlight Gene Alias and Gene NA panel annotation
 
 # Analyzing Data {background-color="#007CBA" style="text-align: center;"}
 
+# {genieBPC} + {gnomeR} Pipeline
+
+![](images/genie-gnomer-pipline.png)
+
 ## Analyzing Data: Issues To Address
 
 EDIT THIS DOWN AND ALSO ADD PATHWAYS 
@@ -189,6 +193,7 @@ Helper Functions for Multiple Testing:
 ## Analyzing Data: Data Visualization
 
 - could also mention color palettes 
+
 ## Misc
 - oncoKB
 - oncoprints, etc 

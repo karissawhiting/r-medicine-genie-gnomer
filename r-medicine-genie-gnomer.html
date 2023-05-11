@@ -408,19 +408,20 @@
 <section id="processing-data-issues-to-address" class="slide level2">
 <h2>Processing Data: Issues To Address</h2>
 <ol type="1">
-<li><strong>Research Samples vs.&nbsp;IMPACT Samples</strong>
-<ul>
-<li>Some samples may be sequenced outside MSK or using different panels. You can usually tell by the sample ID (if P-000XXX-T0X-IMX, it is likely IMPACT with IMX indicating panel)</li>
-</ul></li>
-<li><strong>Cohort Inclusion</strong>
+<li><p><strong>Multiple Samples Per Patient</strong></p></li>
+<li><p><strong>Cohort Inclusion</strong></p>
 <ul>
 <li>Samples with no alterations may be dropped when pulling data</li>
 </ul></li>
-<li><strong>Data Formats &amp; Gene Standards Often Inconsistent</strong>
+<li><p><strong>Data Formats &amp; Gene Standards Often Inconsistent</strong></p>
 <ul>
 <li>Column names, data formats and gene names may differ between studies or even within studies!</li>
 </ul></li>
-<li><strong>Missing Data in Mutation Status</strong>
+<li><p><strong>Multi-Institutional Studies Use Several Gene Panels</strong></p>
+<ul>
+<li>Some samples may be sequenced using different panels therefore the non overlapping genes have to be annotated as missing</li>
+</ul></li>
+<li><p><strong>Missing Data in Mutation Status</strong></p>
 <ul>
 <li>Mutation Status is sometimes missing data.</li>
 </ul></li>
@@ -452,10 +453,14 @@
 </ul></li>
 </ol>
 </section>
-<section id="process-data-in-matrix" class="slide level2">
-<h2>Process Data in Matrix</h2>
+<section id="process-data-select-one-sample-per-patient" class="slide level2">
+<h2>Process Data: Select One Sample Per Patient</h2>
+<p>select_unique_ngs slide</p>
+</section>
+<section id="process-data-format-data-in-analysis-ready-matrix" class="slide level2">
+<h2>Process Data: Format Data in Analysis-ready Matrix</h2>
 <ul>
-<li>show/highlight which args help data processing issues</li>
+<li>show/highlight which args help data processing issues in the next few slides</li>
 </ul>
 <div class="cell columns column-output-location">
 <div class="column">
@@ -470,17 +475,40 @@
 </div>
 </div>
 </section>
-<section id="process-data-in-matrix-multi-institutional-panels" class="slide level2">
-<h2>Process Data in Matrix: Multi-institutional Panels</h2>
+<section id="process-data-ensure-samples-with-no-alterations-are-included" class="slide level2">
+<h2>Process Data: Ensure Samples with No Alterations Are included</h2>
+<ul>
+<li>samples arg</li>
+</ul>
+</section>
+<section id="process-data-gene-aliases" class="slide level2">
+<h2>Process Data: Gene Aliases</h2>
 <p>Highlight Gene Alias and Gene NA panel annotation</p>
+</section>
+<section id="process-data-multi-institutional-panels" class="slide level2">
+<h2>Process Data: Multi-institutional Panels</h2>
+<p>Highlight Gene Alias and Gene NA panel annotation</p>
+</section>
+<section id="process-data-missing-mutation-data-data-filters" class="slide level2">
+<h2>Process Data: Missing Mutation Data &amp; Data Filters</h2>
+<p>-Does this occur with GENIE data where there are NAs for variant classification /mutation type?</p>
+<ul>
+<li>we may not need this slide</li>
+</ul>
 </section></section>
-<section>
 <section id="analyzing-data" class="title-slide slide level1 center" data-background-color="#007CBA" style="text-align: center;">
 <h1>Analyzing Data</h1>
 
 </section>
+
+<section>
+<section id="geniebpc-gnomer-pipeline-1" class="title-slide slide level1 center">
+<h1>{genieBPC} + {gnomeR} Pipeline</h1>
+
+<img data-src="images/genie-gnomer-pipline.png" class="r-stretch"></section>
 <section id="analyzing-data-issues-to-address" class="slide level2">
 <h2>Analyzing Data: Issues To Address</h2>
+<p>EDIT THIS DOWN AND ALSO ADD PATHWAYS</p>
 <ol type="1">
 <li><strong>OncoKB Annotation</strong>
 <ul>
@@ -499,11 +527,11 @@
 <li><strong>Survival Analysis Biases</strong></li>
 </ol>
 </section>
-<section id="summarize-data-with-tbl_genomic" class="slide level2">
-<h2>Summarize Data with tbl_genomic()</h2>
+<section id="analyzing-data-summarize-data-with-tbl_genomic" class="slide level2">
+<h2>Analyzing Data: Summarize Data with tbl_genomic()</h2>
 </section>
-<section id="summarize-data-with-tbl_genomic-1" class="slide level2">
-<h2>Summarize Data with tbl_genomic()</h2>
+<section id="analyzing-data-summarize-data-with-tbl_genomic-1" class="slide level2">
+<h2>Analyzing Data: Summarize Data with tbl_genomic()</h2>
 <p>May want to analyze on the gene level only Use summarize_by_gene() first</p>
 </section>
 <section id="analyzing-data-multiple-testing" class="slide level2">
@@ -514,13 +542,24 @@
 <li><p><span class="emphasized">Report tests with adjustment</span>- Recommended to use false discovery rate adjustment as opposed to FWER (eg. bonferroni) as it controls for a low proportion of false positives, instead of guarding against making any false positive conclusion at all</p></li>
 <li><p>Reference: Goeman JJ, Solari A. Multiple hypothesis testing in genomics. Stat Med. 2014 May 20;33(11):1946-78. doi: 10.1002/sim.6082. Epub 2014 Jan 8. PMID: 24399688.</p></li>
 </ul>
-</section>
-<section id="helper-functions-for-multiple-testing" class="slide level2">
-<h2>Helper Functions for Multiple Testing</h2>
+<p>Helper Functions for Multiple Testing:</p>
 <ul>
 <li>subset_by_frequency</li>
 <li>subset_by_panel</li>
 <li>tbl_genomic()</li>
+</ul>
+</section>
+<section id="analyzing-data-data-visualization" class="slide level2">
+<h2>Analyzing Data: Data Visualization</h2>
+<ul>
+<li>could also mention color palettes</li>
+</ul>
+</section>
+<section id="misc" class="slide level2">
+<h2>Misc</h2>
+<ul>
+<li>oncoKB</li>
+<li>oncoprints, etc</li>
 </ul>
 <div class="footer footer-default">
 
