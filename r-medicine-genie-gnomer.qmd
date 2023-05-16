@@ -16,11 +16,14 @@ editor: source
 ```{r}
 #| echo: false
 #| results: false
+set.seed(20230515)
 
 knitr::opts_chunk$set(echo = TRUE, results = 'asis')
 
 library(tidyverse)
 library(gtsummary)
+library(synapser)
+library(genieBPC)
 
 # let's check if reg gt tables work now. if so, ditch this
 knit_print.gtsummary <- function(x, ...) {
@@ -38,6 +41,8 @@ registerS3method("knit_print", "gt_tbl", knit_print.gt_tbl)
 
 # fill for font awesome icons
 fa_fill <- "#606060"
+
+synLogin()
 ```
 
 ![](images/gnomeR-logo.png){width="250px"}
@@ -47,6 +52,29 @@ fa_fill <- "#606060"
 # {genieBPC} + {gnomeR} Pipeline
 
 ![](images/genie-gnomer-pipline.png)
+## Case Study
+
+::: {.panel-tabset}
+
+### Code
+
+```{r}
+#| echo: false
+#| results: false
+
+nsclc_2 <- pull_synapse_data("NSCLC", "v2.0-public")
+cohort <- create_analytic_cohort(nsclc_2$NSCLC_v2.0, stage_dx = "Stage IV",
+                                 histology = "Adenocarcinoma")
+```
+
+### Data
+
+```{r}
+samples <- 
+```
+
+:::
+
 
 ## Processing Data: Issues To Address
 
@@ -67,13 +95,7 @@ fa_fill <- "#606060"
     -   Mutation Status is sometimes missing data.
 
     
-    
-
-## Processing Data: Issues To Address
-
-MAYBE THIS SLIDE GOES AT END as RECAP AFTER WE SHOW FUNCTIONS?
-
-
+:::{.notes}
 1)  **Research Samples vs. IMPACT Samples**
     -   Some samples may be sequenced outside MSK or using different panels.
     -   [Check panels and annotate NAs accordingly]{.emphasized}
@@ -86,9 +108,44 @@ MAYBE THIS SLIDE GOES AT END as RECAP AFTER WE SHOW FUNCTIONS?
 4)  **Missing Data in Mutation Status**
     -   Mutation Status is sometimes missing data.
     -   [Check Mutation Status column]{.emphasized}
+    
+:::
+
+
+
 
 
 ## Process Data: Select One Sample Per Patient
+
+:::: {.columns}
+
+::: {.column width="40%"}
+Patients can have many NGS values.
+```{r}
+#| echo: false
+#| results: true
+
+# select 5 samples and show how many NGS they have
+
+```
+
+:::
+
+::: {.column width="60%"}
+
+
+```{r}
+#| echo: true
+nsclc_one_ngs <- select_unique_ngs()
+
+#
+```
+
+:::
+
+::::
+
+
 
 select_unique_ngs slide
 
@@ -96,11 +153,15 @@ select_unique_ngs slide
 
 - show/highlight which args help data processing issues in the next few slides
 
-```{r }
-#| output-location: "column"
+```{r, `code-line-numbers`="|2|4" }
+#| output-location: column
 #| echo: true
 #| eval: false
-gnomeR::create_gene_binary(mutation = gnomeR::mutations) %>%
+gnomeR::create_gene_binary(
+  samples = 
+  mutation = gnomeR::mutations,
+  cna = gnomeR::cna,
+  fusion = gnomeR::sv) %>%
   head()
 ```
 
@@ -108,8 +169,17 @@ gnomeR::create_gene_binary(mutation = gnomeR::mutations) %>%
 
 - samples arg
 
-```{r}
+```{r, `code-line-numbers`="2" }
+#| output-location: column
+#| echo: true
+#| eval: false
 
+gnomeR::create_gene_binary(
+  samples = 
+  mutation = gnomeR::mutations,
+  cna = gnomeR::cna,
+  fusion = gnomeR::sv) %>%
+  head()
 ```
 
 
@@ -210,6 +280,8 @@ Helper Functions for Multiple Testing:
 
 - could also mention color palettes 
 - CNA heatmap?
+
+## Summary
 
 ## Misc
 - oncoKB
