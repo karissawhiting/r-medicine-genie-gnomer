@@ -62,15 +62,10 @@ synLogin()
 #| echo: false
 #| results: false
 
-nsclc_2 <- pull_synapse_data("NSCLC", "v2.0-public")
-cohort <- create_analytic_cohort(nsclc_2$NSCLC_v2.0, stage_dx = "Stage IV",
+nsclc_2 <- pull_data_synapse("NSCLC", "v2.0-public")
+
+nsclc_2_ex <- create_analytic_cohort(nsclc_2$NSCLC_v2.0, stage_dx = "Stage IV",
                                  histology = "Adenocarcinoma")
-```
-
-### Data
-
-```{r}
-samples <- 
 ```
 
 :::
@@ -92,7 +87,6 @@ samples <-
 
 
 5)  **Missing Data in Mutation Status**
-    -   Mutation Status is sometimes missing data.
 
     
 :::{.notes}
@@ -112,22 +106,15 @@ samples <-
 :::
 
 
-
-
-
 ## Process Data: Select One Sample Per Patient
 
 :::: {.columns}
 
 ::: {.column width="40%"}
-Patients can have many NGS values.
-```{r}
-#| echo: false
-#| results: true
 
-# select 5 samples and show how many NGS they have
-
-```
+- Patients can have many NGS values
+- Setting criteria -> 1 sample
+- If multiple match the criteria, random sample taken
 
 :::
 
@@ -136,38 +123,38 @@ Patients can have many NGS values.
 
 ```{r}
 #| echo: true
-nsclc_one_ngs <- select_unique_ngs()
+nsclc_samp <- select_unique_ngs(
+  data_cohort = nsclc_2_ex$cohort_ngs,
+  oncotree_code = "LUAD",
+  sample_type = "Metastasis",
+  min_max_time = "max"
+)
 
-#
 ```
 
 :::
 
 ::::
 
-
-
-select_unique_ngs slide
-
 ## Process Data: Format Data in Analysis-ready Matrix
 
-- show/highlight which args help data processing issues in the next few slides
+- Overview of `create_gene_binary()` structure
 
-```{r, `code-line-numbers`="|2|4" }
+```{r, `code-line-numbers`="|2-4" }
 #| output-location: column
 #| echo: true
 #| eval: false
 gnomeR::create_gene_binary(
-  samples = 
-  mutation = gnomeR::mutations,
-  cna = gnomeR::cna,
-  fusion = gnomeR::sv) %>%
+  samples = NULL
+  mutation = NULL,
+  cna = NULL,
+  fusion = NULL) %>%
   head()
 ```
 
-## Process Data: Ensure Samples with No Alterations Are included
+## Process Data: Ensure Samples with No Alterations Are Included
 
-- samples arg
+
 
 ```{r, `code-line-numbers`="2" }
 #| output-location: column
