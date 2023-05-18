@@ -298,6 +298,7 @@ gnomeR::create_gene_binary(
 
 ```
 
+
 - CNA file formatted as matrix
 ```{r}
 #| output-location: column

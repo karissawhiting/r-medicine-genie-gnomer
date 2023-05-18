@@ -1,0 +1,215 @@
+---
+format: 
+  revealjs: 
+    theme:  [default, style.scss]
+    transition: fade
+    slide-number: true
+execute:
+  echo: true 
+  output: asis
+editor: source
+---
+  
+# Analyzing Data {background-color="#007CBA" style="text-align: center;"}
+
+```{r}
+#| echo: false
+#| results: false
+
+
+library(tidyverse)
+library(gtsummary)
+library(genieBPC)
+library(gnomeR)
+
+nsclc_2 <- pull_data_synapse("NSCLC", "v2.0-public")
+
+nsclc_2_ex <- create_analytic_cohort(nsclc_2$NSCLC_v2.0, stage_dx = "Stage IV",
+                                 histology = "Adenocarcinoma")
+
+nscl_analysis <- gnomeR::create_gene_binary(
+  mutation = gnomeR::mutations,
+  cna = gnomeR::cna,
+  fusion = gnomeR::sv)
+
+```
+
+# {genieBPC} + {gnomeR} Pipeline
+
+![](images/genie-gnomer-pipline.png)
+
+
+## Case Study
+
+Using the processed Stage IV adenocarcinoma NSCLC cohort data, we will summarize and conduct exploratory analyses of prevalent alterations in this cohort. 
+
+## Analyzing Data: Issues/Steps To Address
+
+2) **Multiple Testing and False Positives**
+  - Very low prevalence genes are often not very informative. Choose a threshold (e.g. 1% or 5 %) _a prior_ to limit number of tests. 
+- Report q-value (adjusted for multiple testing)
+
+1) **Limited Power To Detect With Sparse Alterations** 
+  - You may want to summarize on Alteration, Gene or Pathway Level
+  
+3) **Analyzing Tumor Mutation Burden Across Samples**
+  - TMB (number of mutations per coding area) can differ depending on depth of sequencing. This can make this measure inconsistent between panels/institutions. 
+
+4) **OncoKB Annotation** - Maybe
+  - Some studies may require oncoKB annotation of data
+
+5) CNA segmentation data???? - Maybe 
+
+## Analyzing Data: Subset By a Prevalence Threshold
+
+Use `subset_by_frequency()` to subset genes above a given threshold
+
+```{r}
+ncol(nscl_analysis)
+
+nscl_subset_05 <- nscl_analysis %>%
+  subset_by_frequency(t = .05)
+
+ncol(nscl_subset_05)
+
+nscl_subset <- nscl_analysis %>%
+  subset_by_frequency(t = .1)
+
+ncol(nscl_subset)
+```
+
+## Analyzing Data: Subset by a Panel
+
+Use `subset_by_panel()` to subset only genes in a given panel. 
+
+```{r}
+ncol(nscl_analysis)
+
+nscl_subset_panel <- nscl_analysis %>%
+  subset_by_panel(panel_id = 'IMPACT300')
+
+ncol(nscl_subset_panel)
+```
+
+
+## Analyzing Data: Summarize Alterations with tbl_genomic()
+
+`tbl_genomic()` is a wrapper function for `gtsummary::tbl_summary()` specifically 
+designed for presenting genomic data:
+
+```{r}
+#| output-location: column
+
+nscl_subset %>% 
+  tbl_genomic()
+```
+
+## Analyzing Data: Summarize Genes with tbl_genomic()
+
+You may want to analyze on the gene level only. Use `summarize_by_gene()` first, 
+then pass to `tbl_genomic()`:
+
+```{r}
+#| output-location: column
+
+tbl_gene <- nscl_analysis %>%
+  summarize_by_gene() %>%
+  subset_by_frequency(t = .1) %>%
+  tbl_genomic()
+
+tbl_gene
+```
+
+**Note: If you only want to analyzed data above a certain threshold, you will first need to summarize_by_gene() before passing to `subset_by_frequency()` or certain alterations may be omitted**
+
+
+## Analyzing Data: Pathways
+
+Often we want to analyze alterations on the pathway level. 
+
+{gnomeR} offers several default pathways that can be added with `add_pathways()`
+
+```{r}
+paths <- gnomeR::pathways %>% names()
+paths
+```
+
+## Analyzing Data: Pathways
+
+```{r }
+#| output-location: column
+
+path_df <- nscl_analysis %>%
+  add_pathways() 
+
+path_df %>%
+  select(contains("pathway")) %>%
+  tbl_summary() %>% 
+  bold_labels()
+```
+
+## Analyzing Data: Pathways
+
+You can also add a custom pathway:
+
+
+```{r}
+
+path_df <- nscl_analysis %>%
+  add_pathways(custom_pathways = c("SPOP.mut", "FOXA1.mut")) 
+
+path_df %>% select("pathway_custom") %>%
+  tbl_summary()
+```
+
+<br>
+
+
+**Note: You must specify `.mut`, `.Amp`, `.Del` for custom pathways**
+
+## Analying Data: Comparing Alteration Frequencies Across Clinical Data
+
+WHAT CLINICAL VARIABLE SHOULD WE USE?
+
+```{r}
+
+```
+
+
+## Analyzing Data: Multiple Testing
+
+- Because each hypothesis test has a probability of producing a type I error (falsely rejecting a null hypothesis that is true), performing a large number of hypothesis tests virtually guarantees the presence of type I errors among the findings.
+
+- [Report tests with adjustment]{.emphasized}- Recommended to use false discovery rate adjustment as opposed to FWER (eg. bonferroni) as it controls for a low proportion of false positives, instead of guarding against making any false positive conclusion at all
+
+- Reference: Goeman JJ, Solari A. Multiple hypothesis testing in genomics. Stat Med. 2014 May 20;33(11):1946-78. doi: 10.1002/sim.6082. Epub 2014 Jan 8. PMID: 24399688.
+
+## Analyzing Data: Multiple Testing
+
+ ADD_Q() once we have clinical 
+
+```{r}
+#| output-location: column
+#| 
+tbl_gene <- nscl_analysis %>%
+  summarize_by_gene() %>%
+  subset_by_frequency(t = .1) %>%
+  tbl_genomic()
+
+tbl_gene
+```
+
+
+
+## Analyzing Data: Data Visualization
+
+- could also mention color palettes 
+- CNA heatmap?
+  
+## Summary
+  
+## Misc
+  - oncoKB
+- oncoprints, etc 
+- CNA?
+  
