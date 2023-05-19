@@ -77,12 +77,12 @@ load(here::here("data", "nsclc_synapse_data.RData"))
 
 ## Case Study
 
-Using the cohort of patients who were diagnosed with Stage IV adenocarcinoma NSCLC, we will summarize alterations including mutations, CNA and fusions, and analyze differences in alteration frequencies between Males and Females.
+Using the cohort of patients who were diagnosed with Stage IV adenocarcinoma NSCLC, we will summarize alterations including mutations, CNA and fusions, and analyze differences in alteration frequencies between males and females.
 
+:::: {.columns}
 
+::: {.column width="60%}
 ```{r }
-#| output-location: column
-#| 
 nsclc_cohort <- create_analytic_cohort(
   data_synapse = nsclc_synapse_data$NSCLC_v2.0,
   stage_dx = c("Stage IV"),
@@ -97,13 +97,22 @@ nsclc_cohort <- create_analytic_cohort(
   return_summary = TRUE
 )
 
+
+```
+:::
+
+::: {.column width="40%}
+```{r}
+#| echo: false
 nsclc_cohort$cohort_pt_char %>%
   select(record_id, institution, naaccr_sex_code, age_last_fu_yrs) %>% 
   select(-record_id) %>%
   tbl_summary() %>%
   bold_labels()
 ```
+:::
 
+::::
 ## Overview of Genomic Data
 
 We will be processing and analyzing data on:
@@ -114,13 +123,13 @@ We will be processing and analyzing data on:
 mutations <- nsclc_synapse_data$NSCLC_v2.0$mutations_extended
 ```
 
-1) Discrete Copy Number Alterations
+2) Discrete Copy Number Alterations
 
 ```{r}
 cna <- nsclc_synapse_data$NSCLC_v2.0$cna
 ```
 
-1) Fusions
+3) Fusions
 
 ```{r}
 fusions <- nsclc_synapse_data$NSCLC_v2.0$fusions
@@ -173,7 +182,8 @@ fusions <- nsclc_synapse_data$NSCLC_v2.0$fusions
 ::: {.incremental}
 - Patients can have many NGS values
 - We can use `select_unique_ngs()` to choose 1 per patient
-- If multiple match the criteria, random sample taken
+- This function prioritizes characteristics of interest and breath of genes sequenced
+- However, if patients only have one report, it will be returned regardless
 
 ::: 
 
@@ -384,7 +394,7 @@ nsclc_panels %>% head() %>% gt()
 ```
 
 
-## Not All Patients Tested on Same Panel
+## Not All Patients Tested on Same Panel {.scrollable}
 
 :::: {.columns}
 
@@ -399,8 +409,22 @@ binmat1 <- gnomeR::create_gene_binary(
   fusion = reformat_fusions,
   samples = nsclc_samp$cpt_genie_sample_id,
   specify_panel = "no")
+```
 
-binmat1[1:5, 1:5] %>% gt()
+```{r}
+#| echo: false
+binmat1 %>%
+  filter(sample_id %in%
+          c("GENIE-DFCI-004022-1313",
+            "GENIE-DFCI-000013-8840",
+            "GENIE-MSK-P-0002725-T01-IM3",
+            "GENIE-MSK-P-0017722-T02-IM6",
+            "GENIE-VICC-125866-unk-1"))%>%
+  select(1, 3:8) %>%
+  left_join(nsclc_panels)%>%
+  relocate(panel_id, .after = sample_id)%>%
+  arrange(panel_id, sample_id)%>%
+  gt()
 ```
 
 :::
@@ -415,8 +439,21 @@ binmat2 <- gnomeR::create_gene_binary(
   fusion = reformat_fusions,
   samples = nsclc_samp$cpt_genie_sample_id,
   specify_panel = nsclc_panels)
+```
 
-binmat2[1:5, 1:5] %>% gt() 
+```{r}
+#| echo: false
+binmat2 %>% filter(sample_id %in%
+          c("GENIE-DFCI-004022-1313",
+            "GENIE-DFCI-000013-8840",
+            "GENIE-MSK-P-0002725-T01-IM3",
+            "GENIE-MSK-P-0017722-T02-IM6",
+            "GENIE-VICC-125866-unk-1"))%>%
+  select(1, 3:8) %>%
+  left_join(nsclc_panels)%>%
+  relocate(panel_id, .after = sample_id)%>%
+  arrange(panel_id, sample_id)%>%
+  gt()
 ```
 
 :::
@@ -456,23 +493,25 @@ ncol(test_recode)
 
 ```
 
-## Process Data: View messages
+## Process Data: Final dataset
 
-```{r, `code-line-numbers`="8" }
+```{r}
 #| eval: true
 #| echo: false
+```
 
-gene_binary <-  gnomeR::create_gene_binary(
-  samples = nsclc_samp$cpt_genie_sample_id,
-  mutation = nsclc_synapse_data$NSCLC_v2.0$mutations_extended,
-  cna = cna_synapse_long,
-  fusion = reformat_fusions,
-  specify_panel = nsclc_panels,
-  recode_aliases = "impact")
-
-gene_binary %>%
-  select(all_of(1:10))%>%
-  slice(1:5) %>%
+```{r}
+#| echo: false
+binmat2 %>% filter(sample_id %in%
+          c("GENIE-DFCI-004022-1313",
+            "GENIE-DFCI-000013-8840",
+            "GENIE-MSK-P-0002725-T01-IM3",
+            "GENIE-MSK-P-0017722-T02-IM6",
+            "GENIE-VICC-125866-unk-1"))%>%
+  select(1, 3:8) %>%
+  left_join(nsclc_panels)%>%
+  relocate(panel_id, .after = sample_id)%>%
+  arrange(panel_id, sample_id)%>%
   gt()
 
 ```
