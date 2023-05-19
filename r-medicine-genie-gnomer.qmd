@@ -340,7 +340,7 @@ nsclc_samp %>% select(cpt_seq_assay_id) %>% count(cpt_seq_assay_id)%>% gt::gt()
 ```
 :::
 
-:::
+::::
 
 ## Not All Patients Tested on Same Panel
 
@@ -372,7 +372,6 @@ gnomeR::create_gene_binary(
 To use `specify_panels`, we first need to pass a dataframe indicating which patient IDs were sequenced on which panels:
 
 ```{r}
-#| output-location: column-fragment
 #| echo: true
 
 nsclc_panels <- data.frame(
@@ -381,14 +380,16 @@ nsclc_panels <- data.frame(
   mutate(panel_id = ifelse(!is.na(panel_id),
                                panel_id, "no"))
 
-nsclc_panels %>% head()
+nsclc_panels %>% head() %>% gt()
 ```
 
 
 ## Not All Patients Tested on Same Panel
 
-:::{.columns}
-:::
+:::: {.columns}
+
+
+::: {.column width="50%"}
 
 ```{r }
 #| message: false
@@ -399,11 +400,12 @@ binmat1 <- gnomeR::create_gene_binary(
   samples = nsclc_samp$cpt_genie_sample_id,
   specify_panel = "no")
 
-binmat1 %>% head()
+binmat1[1:5, 1:5] %>% gt()
 ```
 
 :::
-:::
+
+::: {.column width="50%"}
 
 ```{r }
 #| message: false
@@ -414,36 +416,20 @@ binmat2 <- gnomeR::create_gene_binary(
   samples = nsclc_samp$cpt_genie_sample_id,
   specify_panel = nsclc_panels)
 
-binmat2 %>% head()
+binmat2[1:5, 1:5] %>% gt() 
 ```
 
 :::
-:::
 
-
-
-## Process Data: File types {.scrollable}
-
-
-```{r, `code-line-numbers`="7" }
-#| output-location: column-fragment
-#| eval: false
-
-gnomeR::create_gene_binary(
-  samples = nsclc_samp$cpt_genie_sample_id,
-  specify_panel = nsclc_panels,
-  mutation = nsclc_synapse_data$NSCLC_v2.0$mutations_extended,
-  mut_type = "omit_germline",
-  cna = reform_cna,
-  fusion = reform_fus,
-  recode_aliases = NULL)
-
-```
+::::
 
 
 
 ## Ensure Gene Names Are Consistent Across Studies {.scrollable}
 
+1)  [Data Formats & Gene Standards Often Inconsistent]{.emphasized}
+    -   Column names, data formats and gene names may differ between studies or even within studies!
+    
 ```{r, `code-line-numbers`="8"}
 #| eval: true
 
