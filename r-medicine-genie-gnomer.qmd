@@ -69,16 +69,12 @@ load(here::here("data", "nsclc_synapse_data.RData"))
 
 ## Case Study
 
-<<<<<<< HEAD
 Using the cohort of patients who were diagnosed with Stage IV adenocarcinoma NSCLC, we will:
 
 
 1) [Process data]{.emphasized} into a ***n patients*** x ***p alterations*** matrix of events (0 = no alteration, 1 = alteration)
 
 2) [Summarize genomic alteration frequencies]{.emphasized} and analyze differences between males and females.
-=======
-Using the cohort of patients who were diagnosed with Stage IV adenocarcinoma NSCLC, we will summarize alterations including mutations, CNA and fusions, and analyze differences in alteration frequencies between males and females.
->>>>>>> d33a526e14352a79c9bdaff54b26edd41f029385
 
 :::: {.columns}
 
@@ -112,14 +108,11 @@ nsclc_cohort$cohort_pt_char %>%
   tbl_summary() %>%
   bold_labels()
 ```
-:::
 
-<<<<<<< HEAD
-
-
-=======
 ::::
->>>>>>> d33a526e14352a79c9bdaff54b26edd41f029385
+
+
+
 ## Overview of Genomic Data
 
 We will be processing and analyzing data on:
@@ -131,21 +124,14 @@ We will be processing and analyzing data on:
 mutations <- nsclc_synapse_data$NSCLC_v2.0$mutations_extended
 ```
 
-<<<<<<< HEAD
+
 **1) Discrete Copy Number Alterations**
-=======
-2) Discrete Copy Number Alterations
->>>>>>> d33a526e14352a79c9bdaff54b26edd41f029385
 
 ```{r}
 cna <- nsclc_synapse_data$NSCLC_v2.0$cna
 ```
 
-<<<<<<< HEAD
 **1) Fusions**
-=======
-3) Fusions
->>>>>>> d33a526e14352a79c9bdaff54b26edd41f029385
 
 ```{r}
 fusions <- nsclc_synapse_data$NSCLC_v2.0$fusions
@@ -208,12 +194,9 @@ AACRA Data Guide: https://www.aacr.org/wp-content/uploads/2020/02/20200127_GENIE
 
 - Patients can have many NGS values
 - We can use `select_unique_ngs()` to choose 1 per patient
-<<<<<<< HEAD
-- If multiple match the criteria, a random sample taken
-=======
 - This function prioritizes characteristics of interest and breath of genes sequenced
 - However, if patients only have one report, it will be returned regardless
->>>>>>> d33a526e14352a79c9bdaff54b26edd41f029385
+
 
 
 :::: 
@@ -580,17 +563,6 @@ ncol(test_recode)
 ```
 
 ## Process Data: Final dataset
-
-```{r}
-#| eval: true
-<<<<<<< HEAD
-#| echo: true
-#| message: true
-#| warning: true
-=======
-#| echo: false
-```
->>>>>>> d33a526e14352a79c9bdaff54b26edd41f029385
 
 ```{r}
 #| echo: false
