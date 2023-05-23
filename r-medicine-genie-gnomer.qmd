@@ -15,6 +15,8 @@ editor: source
 ```{r}
 #| echo: false
 #| results: false
+#| cache: false
+#| 
 set.seed(20230515)
  
 knitr::opts_chunk$set(echo = TRUE, results = 'asis')
@@ -57,6 +59,12 @@ registerS3method("knit_print", "tbl_df", knit_print.tbl_df)
 # fill for font awesome icons
 fa_fill <- "#606060"
 
+```
+
+```{r }
+#| echo: false
+#| results: false
+#| 
 genieBPC::set_synapse_credentials()
 
 
@@ -88,11 +96,14 @@ Using the cohort of patients who were diagnosed with Stage IV adenocarcinoma NSC
 
 2)  [Summarize genomic alteration frequencies]{.emphasized} and analyze differences between males and females.
 
-::: columns
-::: {.column width="\"60%"}
+:::: {.columns}
+
+::: {.column width="70%"}
+
 ```{r }
 nsclc_cohort <- create_analytic_cohort(
-  data_synapse = nsclc_synapse_data$NSCLC_v2.0,
+  data_synapse = 
+    nsclc_synapse_data$NSCLC_v2.0,
   stage_dx = c("Stage IV"),
   histology = "Adenocarcinoma",
   regimen_drugs =
@@ -108,9 +119,11 @@ nsclc_cohort <- create_analytic_cohort(
 
 
 ```
-:::
 
-::: {.column width="\"40%"}
+::: 
+
+::: {.column width="30%"}
+
 ```{r}
 #| echo: false
 nsclc_cohort$cohort_pt_char %>%
@@ -120,7 +133,8 @@ nsclc_cohort$cohort_pt_char %>%
   bold_labels()
 ```
 :::
-:::
+
+::::
 
 ## Overview of Genomic Data
 
@@ -150,6 +164,7 @@ AACRA Data Guide: https://www.aacr.org/wp-content/uploads/2020/02/20200127_GENIE
 
 # Processing Data {background-color="#007CBA" style="text-align: center;"}
 
+
 ## Issues When Processing Multi-Institutional Genomic Data
 
 ::: incremental
@@ -160,7 +175,7 @@ AACRA Data Guide: https://www.aacr.org/wp-content/uploads/2020/02/20200127_GENIE
 
 ::: {.callout-note appearance="simple"}
 2)  [Data Formats & Gene Standards Often Inconsistent]{.emphasized}
-    -   Column names, data formats and gene names may differ between studies or even within studies!
+    -   Column names, data formats and gene names may differ between studies or even within studies
 :::
 
 ::: {.callout-note appearance="simple"}
@@ -185,7 +200,7 @@ AACRA Data Guide: https://www.aacr.org/wp-content/uploads/2020/02/20200127_GENIE
 -   Patients can have many NGS values
 -   We can use `select_unique_ngs()` to choose 1 per patient
 -   This function prioritizes characteristics of interest and breath of genes sequenced
--   However, if patients only have one report, it will be returned regardless
+-   However, if patients only has one report, it will be returned regardless
 :::
 
 ## [\|]{.emphasized} Select One Sample Per Patient {background-color="#fff2cc"}
@@ -193,10 +208,14 @@ AACRA Data Guide: https://www.aacr.org/wp-content/uploads/2020/02/20200127_GENIE
 ::: {.callout-note appearance="simple"}
 1)  [Multiple Samples Per Patient]{.emphasized}
     -   We often need to select a single sample per patient for analyses
+    
 :::
 
-```{r}
+
+
+```{r }
 #| echo: true
+
 
 nrow(nsclc_cohort$cohort_ngs)
 
@@ -210,6 +229,8 @@ nsclc_samp <- select_unique_ngs(
 nrow(nsclc_samp)
 
 ```
+
+
 
 ![](images/coding-icons.png){.absolute bottom="0" left="0" width="100" height="65"}
 
@@ -269,15 +290,19 @@ bin_mat[1:5, 1:7] %>% gt::gt()
 We need to reformat GENIE CNA and fusions data to get it into this standard format.
 
 ::: aside
+
 Documentation on data formats: https://docs.cbioportal.org/file-formats/
+
 :::
 
 ## Get Data in Standardized Format
 
 Format fusions to follow the cBioPortal standard:
 
-::: columns
+::: {.columns}
+
 ::: {.column width="50%"}
+
 [Before:]{.emphasized}
 
 ```{r}
@@ -299,9 +324,11 @@ nsclc_synapse_data$NSCLC_v2.0$fusions %>%
     rows = Fusion == "XPO1-USP34 fusion"
   ))
 ```
+
 :::
 
 ::: {.column width="50%"}
+
 [After:]{.emphasized}
 
 ```{r }
@@ -311,38 +338,71 @@ reformat_fusions <- gnomeR::reformat_fusion(nsclc_synapse_data$NSCLC_v2.0$fusion
 
 ```{r}
 #| echo: false
-#| results: asis
 
 reformat_fusions %>% head() %>%
-  select(all_of(c(1, 2, 3, 6))) 
+  select(all_of(c(1, 2, 3, 6))) %>% gt::gt()
 
 ```
+
 :::
+
 :::
+
+
+
 
 ## Get Data in Standardized Format
 
 Format CNA to follow the cBioPortal standard:
 
-::: columns
+::: {.columns}
+
 ::: {.column width="50%"}
+
 [Before:]{.emphasized}
 
 ```{r}
+#| classes: .small-code
+#| class-source: .small-code
 nsclc_synapse_data$NSCLC_v2.0$cna[1:5, 1:5]
 ```
+
+
 :::
 
 ::: {.column width="50%"}
+
 [After:]{.emphasized}
 
-```{r }
-reformat_cna <- gnomeR::pivot_cna_longer(nsclc_synapse_data$NSCLC_v2.0$cna)
 
-reformat_cna[1:5, ] 
+```{r }
+#| results: false
+#| classes: .small-code
+#| class-source: .small-code
+gnomeR::pivot_cna_longer(
+  nsclc_synapse_data$NSCLC_v2.0$cna) 
+
 ```
+
+
+```{r}
+#| echo: false
+
+reformat_cna <- 
+  gnomeR::pivot_cna_longer(
+    nsclc_synapse_data$NSCLC_v2.0$cna)
+
+reformat_cna[1:5, ]
+```
+
 :::
+
 :::
+
+::: aside
+Documentation on data formats: https://docs.cbioportal.org/file-formats/
+:::
+
 
 ## [\|]{.emphasized} Get Data in Standardized Format {background-color="#fff2cc"}
 
@@ -363,9 +423,13 @@ nrow(reformat_cna)
 
 ## Format Data in Analysis-ready Matrix
 
+:::{.incremental}
 -   Data is now in standardized format and can be processed using {gnomeR} `create_gene_binary()`
 
-<br>
+
+-   We will add additional arguments to `create_gene_binary()` to help address remaining data processing issues
+:::
+
 
 [Basic code:]{.emphasized}
 
@@ -373,24 +437,27 @@ nrow(reformat_cna)
 #| echo: true
 #| eval: false
 gnomeR::create_gene_binary(
-  mutation = nsclc_synapse_data$NSCLC_v2.0$mutations_extended,
+  mutation = mutations,
   cna = reformat_cna,
   fusion = reformat_fusions)
 ```
 
--   We will add additional arguments to `create_gene_binary()` to help address remaining data processing issues
 
 ## Cohort Inclusion {auto-animate="true"}
 
 ::: {.callout-note appearance="simple"}
+
 3)  [Cohort Inclusion]{.emphasized}
     -   Samples with no alterations may be dropped when pulling raw genomic data
+    
 :::
 
 <br>
 
-::: columns
+::: {.columns}
+
 ::: {.column width="60%"}
+
 ```{r, `code-line-numbers`="2" }
 #| echo: true
 #| eval: false
@@ -410,24 +477,32 @@ gnomeR::create_gene_binary(
 
 
 ```
+
 :::
 
 ::: {.column width="40%"}
+
 The `samples` argument will ensure all study IDs have a row in resulting analysis data, even if they are not present in genomic files
+
 :::
+
 :::
 
 ## Not All Patients Tested on Same Panel
 
 ::: {.callout-note appearance="simple"}
+
 4)  [Multi-Institutional Studies Use Several Gene Panels]{.emphasized}
     -   Samples may be sequenced using different panels therefore the non overlapping genes have to be annotated as missing
+    
 :::
 
 <br>
 
-::: columns
+::: {.columns}
+
 ::: {.column width="60%"}
+
 ```{r, `code-line-numbers`="3" }
 #| column-location: column-fragment
 #| echo: true
@@ -442,19 +517,25 @@ gnomeR::create_gene_binary(
   fusion = NULL,
   recode_aliases = NULL)
 ```
+
 :::
 
 ::: {.column width="40%"}
+
 The `specify_panels` argument can insert NAs when we know that gene was not tested for a specific set of patients.
+
 :::
+
 :::
 
 ## Not All Patients Tested on Same Panel
 
-To use `specify_panels`, we first need to create a data frame indicating which patient IDs were sequenced on which panels:
+To use `specify_panels`, we first need to create a data frame indicating which patient IDs were sequenced on which panels. 
+
+
+<br>
 
 ```{r}
-#| echo: true
 
 nsclc_panels <- data.frame(
   sample_id = nsclc_samp$cpt_genie_sample_id,
@@ -462,19 +543,24 @@ nsclc_panels <- data.frame(
   mutate(panel_id = ifelse(!is.na(panel_id),
                                panel_id, "no"))
 
-nsclc_panels %>% head()
+nsclc_panels %>% head() 
 ```
 
-## Not All Patients Tested on Same Panel {.scrollable}
 
-::: columns
+## Not All Patients Tested on Same Panel 
+
+::: {.columns}
+
 ::: {.column width="50%"}
+
 [Without Panel Annotation]{.emphasized}
 
-```{r }
+```{r `code-line-numbers`="6" }
 #| message: false
+#| classes: .small-code
+#| class-source: .small-code
 binmat1 <- gnomeR::create_gene_binary(
-  nsclc_synapse_data$NSCLC_v2.0$mutations_extended,
+  mutation = mutations,
   cna = reformat_cna,
   fusion = reformat_fusions,
   samples = nsclc_samp$cpt_genie_sample_id,
@@ -488,22 +574,28 @@ binmat1 %>%
           c("GENIE-DFCI-004022-1313",
             "GENIE-DFCI-000013-8840",
             "GENIE-MSK-P-0002725-T01-IM3",
-            "GENIE-MSK-P-0017722-T02-IM6",
-            "GENIE-VICC-125866-unk-1"))%>%
-  select(1, 3:8) %>%
+            "GENIE-MSK-P-0017722-T02-IM6"
+          #  "GENIE-VICC-125866-unk-1"
+            ))%>%
+  select(1,3, 4, 6, 7) %>%
   left_join(nsclc_panels)%>%
   relocate(panel_id, .after = sample_id)%>%
   arrange(panel_id, sample_id)
+
 ```
+
 :::
 
 ::: {.column width="50%"}
+
 [With Panel Annotation]{.emphasized}
 
-```{r }
+```{r `code-line-numbers`="6" }
 #| message: false
+#| classes: .small-code
+#| class-source: .small-code
 binmat2 <- gnomeR::create_gene_binary(
-  nsclc_synapse_data$NSCLC_v2.0$mutations_extended,
+  mutation = mutations,
   cna = reformat_cna,
   fusion = reformat_fusions,
   samples = nsclc_samp$cpt_genie_sample_id,
@@ -516,71 +608,95 @@ binmat2 %>% filter(sample_id %in%
           c("GENIE-DFCI-004022-1313",
             "GENIE-DFCI-000013-8840",
             "GENIE-MSK-P-0002725-T01-IM3",
-            "GENIE-MSK-P-0017722-T02-IM6",
-            "GENIE-VICC-125866-unk-1"))%>%
-  select(1, 3:8) %>%
+            "GENIE-MSK-P-0017722-T02-IM6"
+          #  "GENIE-VICC-125866-unk-1"
+          ))%>%
+  select(1, 3, 4, 6, 7) %>%
   left_join(nsclc_panels)%>%
   relocate(panel_id, .after = sample_id)%>%
   arrange(panel_id, sample_id) 
 
 ```
+
 :::
+
 :::
 
 ## Ensure Gene Names Are Consistent Across Studies {.scrollable}
 
 ::: {.callout-note appearance="simple"}
+
 1)  [Data Formats & Gene Standards Often Inconsistent]{.emphasized}
     -   Column names, data formats and gene names may differ between studies or even within studies!
+    
 :::
 
-<br>
 
-::: columns
-::: {.column width="\"50%"}
+
+::: {.columns}
+
+::: {.column width="50%"}
+
 ```{r, `code-line-numbers`="8"}
-#| eval: true
-
-test <- gnomeR::create_gene_binary(
+no_recode <- gnomeR::create_gene_binary(
   samples = nsclc_samp$cpt_genie_sample_id,
-  mutation = nsclc_synapse_data$NSCLC_v2.0$mutations_extended,
+  mutation = mutations,
   cna = reformat_cna,
   fusion = reformat_fusions,
   specify_panel = nsclc_panels,
   recode_aliases = "no")
 ```
+
 :::
 
-::: {.column width="\"50%"}
-```{r }
+::: {.column width="50%"}
 
-#| eval: true
-test_recode <- gnomeR::create_gene_binary(
+```{r, `code-line-numbers`="8"}
+
+recode <- gnomeR::create_gene_binary(
   samples = nsclc_samp$cpt_genie_sample_id,
-  mutation = nsclc_synapse_data$NSCLC_v2.0$mutations_extended,
+  mutation = 
+    nsclc_synapse_data$NSCLC_v2.0$mutations_extended,
   cna = reformat_cna,
   fusion = reformat_fusions,
   specify_panel = nsclc_panels,
   recode_aliases = "impact")
 ```
+
 :::
+
 :::
+
+<br>
+
+```{r}
+setdiff(names(no_recode), names(recode)) %>% head()
+```
 
 ## [\|]{.emphasized} Process Data: Final Dataset {background-color="#fff2cc"}
 
-```{r}
-#| echo: false
-binmat2 %>% filter(sample_id %in%
-          c("GENIE-DFCI-004022-1313",
-            "GENIE-DFCI-000013-8840",
-            "GENIE-MSK-P-0002725-T01-IM3",
-            "GENIE-MSK-P-0017722-T02-IM6",
-            "GENIE-VICC-125866-unk-1"))%>%
-  select(1, 3:8) %>%
-  left_join(nsclc_panels) %>%
-  relocate(panel_id, .after = sample_id)%>%
-  arrange(panel_id, sample_id)
+Let's run `create_gene_binary()` with the `samples`, `specify_panel` and `recode_aliases` arguments.
 
+First we create `nsclc_panels`:
+
+```{r}
+nsclc_panels <- data.frame(
+  sample_id = nsclc_samp$cpt_genie_sample_id,
+  panel_id = nsclc_samp$cpt_seq_assay_id) %>% 
+  mutate(panel_id = ifelse(!is.na(panel_id),
+                               panel_id, "no"))
+
+```
+
+Then run `create_gene_binary()`:
+
+```{r}
+gene_binary <- gnomeR::create_gene_binary(
+  mutation = mutations,
+  cna = reformat_cna,
+  fusion = reformat_fusions,
+  samples = nsclc_samp$cpt_genie_sample_id,
+  specify_panel = nsclc_panels)
 ```
 
 ![](images/coding-icons.png){.absolute bottom="0" left="0" width="100" height="65"}
@@ -609,12 +725,14 @@ binmat2 %>% filter(sample_id %in%
 
 :::
 
+::::
+
 ```{r }
 #| echo: false
 #| results: false
 #| message: false
 gene_binary <- gnomeR::create_gene_binary(
-  nsclc_synapse_data$NSCLC_v2.0$mutations_extended,
+  mutation = mutations,
   cna = reformat_cna,
   fusion = reformat_fusions,
   samples = nsclc_samp$cpt_genie_sample_id,
@@ -623,15 +741,17 @@ gene_binary <- gnomeR::create_gene_binary(
 
 ## Case Study
 
-We will use the processed binary data frame data (`gene_binary`) to summarize genomic alterations overall in the cohort, and by sex.
+- We will use the processed binary data frame data (`gene_binary`) to summarize genomic alterations overall in the cohort, and by sex.
 
-First we need to join clinical data on `sex` to genomic data
+- First, we will need to join clinical data on `sex` to genomic data
 
 ## [\|]{.emphasized} Add Clinical Variable To Data {background-color="#fff2cc"}
 
-::: columns
+::: {.columns}
+
 ::: {.column width="60%"}
-```{r}
+
+```{r }
 #| results: false
 #| 
 patient_index <-  nsclc_cohort$cohort_ngs %>%
@@ -652,9 +772,11 @@ gene_binary %>%
   select(naaccr_sex_code) %>%
   tbl_summary()
 ```
+
 :::
 
 ::: {.column width="40%"}
+
 ```{r }
 #| echo: false
 #| 
@@ -662,7 +784,9 @@ gene_binary %>%
   select(naaccr_sex_code) %>%
   tbl_summary()
 ```
+
 :::
+
 :::
 
 ![](images/coding-icons.png){.absolute bottom="0" left="0" width="100" height="65"}
@@ -670,14 +794,16 @@ gene_binary %>%
 ## Subset By a Prevalence Threshold
 
 ::: {.callout-note appearance="simple"}
+
 1)  [Multiple Testing and False Positives]{.emphasized}
 
 -   Very low prevalence genes are often not very informative. Choose a threshold (e.g. 1% or 5 %) *a prior* to limit number of hypothesis tests.
+
 :::
 
 <br>
 
--   Use `subset_by_frequency()` to subset genes above a given threshold. `t` indicates a threshold between 0 (`t = .01`) and 100% (`t = .01`) prevalence.
+-   Use `subset_by_frequency()` to subset genes above a given threshold. `t` indicates a threshold between 0 (`t = 0`) and 100% (`t = .1`) prevalence.
 
 -   `other_vars` retains the clinical variable of interest in the resulting data set.
 
@@ -711,7 +837,7 @@ ncol(nscl_subset_panel)
 
 -   `tbl_genomic()` is a wrapper function for `gtsummary::tbl_summary()` specifically designed for presenting genomic data:
 
--   You can use any {gtsummary} functions on top of `tbl_genomic()` to customize table
+-   You can use any {gtsummary} function on top of `tbl_genomic()` to customize table further (e.g. `bold_labels()`)
 
 ## [\|]{.emphasized} Summarize Alterations with tbl_genomic {background-color="#fff2cc"}
 
@@ -738,13 +864,29 @@ You may want to analyze on the gene level only. Use `summarize_by_gene()` first,
 tbl_gene <- gene_binary %>%
   select(-naaccr_sex_code) %>%
   summarize_by_gene() %>%
-  subset_by_frequency(t = .1) %>%
+  subset_by_frequency(t = .4) %>%
   tbl_genomic()
 
 tbl_gene
 ```
 
+## Summarize Genes with tbl_genomic()
+
 **Note: If you only want to analyzed data above a certain threshold, you will first need to summarize_by_gene() before passing to `subset_by_frequency()` or certain alterations may be omitted**
+
+
+```{r}
+#| output-location: column
+
+tbl_gene <- gene_binary %>%
+  select(-naaccr_sex_code) %>%
+  summarize_by_gene() %>%
+  subset_by_frequency(t = .4) %>%
+  tbl_genomic()
+
+tbl_gene
+```
+
 
 ## Summarize Oncogenic Pathways
 
@@ -758,7 +900,7 @@ tbl_gene
 
 Often we want to analyze alterations on the pathway level.
 
-![](images/pathways.png){.absolute bottom="100" left="100" width="400px"}
+![](images/pathways.png){.absolute bottom="15" left="250" width="400px"}
 
 ## Summarize Oncogenic Pathways
 
@@ -782,7 +924,7 @@ paths
 ```
 
 
-## Analyzing Data: Pathways
+## Summarize Oncogenic Pathways
 
 You can also add a custom pathway:
 
@@ -820,8 +962,16 @@ path_df %>%
 
 ## Comparing Alteration Frequencies Across Clinical Data
 
+We can easily compare frequencies by sex using the `by` argument:
+
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+
 ```{r}
-#| output-location: column
+#| results: false
 
 tbl_gene <- gene_binary %>%
   subset_by_frequency(
@@ -833,49 +983,59 @@ tbl_gene <- gene_binary %>%
 tbl_gene
 ```
 
+:::
 
-## Analyzing Data: Multiple Testing
+::: {.column width="50%"}
 
-::: {.callout-note appearance="simple"}
+```{r }
+#| echo: false
+#|
+tbl_gene
 
-1)  [Multiple Testing and False Positives]{.emphasized}
-
--   Many hypothesis tests done simultaneously can lead to high rate of false positive findings.
--   Very low prevalence genes are often not very informative.
--   Choose a threshold (e.g. 1% or 5 %) *a prior* to limit number of hypothesis tests and consider reporting Report q-value (adjusted for multiple testing).
+```
 
 :::
 
-```{r}
-#| output-location: column
+::::
 
-tbl_gene <- gene_binary %>%
-  subset_by_frequency(t = .1,
-                      other_vars = naaccr_sex_code) %>%
-  tbl_genomic(by = naaccr_sex_code) %>%
+## Comparing Alteration Frequencies Across Clinical Data
+
+::: {.callout-note appearance="simple"}
+1)  [Multiple Testing and False Positives]{.emphasized}
+:::
+
+
+```{r }
+
+gene_binary %>%
+  subset_by_frequency(
+    t = .4,
+    other_vars = naaccr_sex_code) %>%
+  tbl_genomic(
+    by = naaccr_sex_code) %>%
   bold_labels() %>%
   add_p() %>%
   add_q()
 
-tbl_gene 
+
 ```
 
 
-
-## [\|]{.emphasized} Comparing Alteration Frequencies Across Clinical Data {background-color="#fff2cc"}
+## [|]{.emphasized} Comparing Alteration Frequencies Across Clinical Data {background-color="#fff2cc"}
 
 ```{r}
-#| output-location: column
 
 tbl_gene <- gene_binary %>%
-  subset_by_frequency(t = .1,
-                      other_vars = naaccr_sex_code) %>%
+  subset_by_frequency(
+    t = .4,
+    other_vars = naaccr_sex_code) %>%
   tbl_genomic(by = naaccr_sex_code) %>%
   bold_labels() %>%
   add_p() %>%
   add_q()
 
 tbl_gene 
+
 ```
 
 
