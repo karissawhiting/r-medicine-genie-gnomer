@@ -392,13 +392,13 @@
 <div class="cell">
 
 </div>
-<div class="cell">
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-2_d2b2158a70cb9ad9a8edbd596af983a8">
 
 </div>
-<div class="cell">
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-3_449ba88b313d372c3fe16405be7d3800">
 
 </div>
-<div class="cell">
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-4_050c6fcfd6c131a18fce1da903f6e106">
 
 </div>
 </section>
@@ -406,11 +406,12 @@
 <h2>Case Study</h2>
 <p>Using the cohort of patients who were diagnosed with Stage IV adenocarcinoma NSCLC, we will:</p>
 <ol type="1">
-<li><p><span class="emphasized">Process data</span> into a analysis-ready matrix of events.</p></li>
-<li><p><span class="emphasized">Summarize genomic alteration frequencies</span> and analyze differences between males and females.</p></li>
+<li><p><span class="emphasized">Process data</span> into a analysis-ready matrix of gene alteration events</p></li>
+<li><p><span class="emphasized">Summarize genomic alteration frequencies</span> and analyze differences between males and females</p></li>
 </ol>
 <div class="columns">
 <div class="column" style="width:70%;">
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-5_281783f6b5819cf0d6269107cd819924">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>nsclc_cohort <span class="ot">&lt;-</span> <span class="fu">create_analytic_cohort</span>(</span>
 <span id="cb1-2"><a href="#cb1-2"></a>  <span class="at">data_synapse =</span> </span>
 <span id="cb1-3"><a href="#cb1-3"></a>    nsclc_synapse_data<span class="sc">$</span>NSCLC_v2<span class="fl">.0</span>,</span>
@@ -426,7 +427,9 @@
 <span id="cb1-13"><a href="#cb1-13"></a>  <span class="at">regimen_order_type =</span> <span class="st">"within cancer"</span>,</span>
 <span id="cb1-14"><a href="#cb1-14"></a>  <span class="at">return_summary =</span> <span class="cn">TRUE</span></span>
 <span id="cb1-15"><a href="#cb1-15"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div><div class="column" style="width:30%;">
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-6_4f489ce4a588eae3fb88cfb4b6c58fe9">
 <div id="yysyqifuop" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
@@ -478,19 +481,26 @@ naaccr_sex_code
 </div>
 </div>
 </div>
+</div>
 </section>
 <section id="overview-of-genomic-data" class="slide level2">
 <h2>Overview of Genomic Data</h2>
 <p>We will be processing and analyzing data on:</p>
 <p><strong>1) Mutations</strong></p>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-7_a21c91ff29fa7a4c65b42ef4b4c5fa21">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>mutations <span class="ot">&lt;-</span> nsclc_synapse_data<span class="sc">$</span>NSCLC_v2<span class="fl">.0</span><span class="sc">$</span>mutations_extended</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>2) Discrete Copy Number Alterations</strong></p>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-8_530ad07d18bbc9b1fa153e72d19e388c">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>cna <span class="ot">&lt;-</span> nsclc_synapse_data<span class="sc">$</span>NSCLC_v2<span class="fl">.0</span><span class="sc">$</span>cna</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>3) Fusions</strong></p>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-9_e4fdf86db7975db4e6740815c1931843">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>fusions <span class="ot">&lt;-</span> nsclc_synapse_data<span class="sc">$</span>NSCLC_v2<span class="fl">.0</span><span class="sc">$</span>fusions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 <aside><div>
-<p>AACRA Data Guide: https://www.aacr.org/wp-content/uploads/2020/02/20200127_GENIE_Data_Guide_7.pdf</p>
+<p>AACR Data Guide: https://www.aacr.org/wp-content/uploads/2020/02/20200127_GENIE_Data_Guide_7.pdf</p>
 </div></aside></section>
 <section>
 <section id="processing-data" class="title-slide slide level1 center" data-background-color="#007CBA" style="text-align: center;">
@@ -522,9 +532,9 @@ naaccr_sex_code
 </div>
 <div class="callout-content">
 <ol start="2" type="1">
-<li class="fragment"><span class="emphasized">Cohort Inclusion</span>
+<li class="fragment"><span class="emphasized">Data Formats &amp; Gene Standards Often Inconsistent</span>
 <ul>
-<li class="fragment">Samples with no alterations may be dropped when pulling data</li>
+<li class="fragment">Column names, data formats and gene names may differ between studies or even within studies</li>
 </ul></li>
 </ol>
 </div>
@@ -537,9 +547,9 @@ naaccr_sex_code
 </div>
 <div class="callout-content">
 <ol start="3" type="1">
-<li class="fragment"><span class="emphasized">Data Formats &amp; Gene Standards Often Inconsistent</span>
+<li class="fragment"><span class="emphasized">Cohort Inclusion</span>
 <ul>
-<li class="fragment">Column names, data formats and gene names may differ between studies or even within studies</li>
+<li class="fragment">Samples with no alterations may be dropped when pulling data</li>
 </ul></li>
 </ol>
 </div>
@@ -583,9 +593,62 @@ naaccr_sex_code
 <ul>
 <li class="fragment">Patients can have many NGS reports</li>
 <li class="fragment">We can use <code>select_unique_ngs()</code> to select 1 sample per patient</li>
-<li class="fragment">This function prioritizes characteristics of interest and breath of genes sequenced</li>
-<li class="fragment">If patients only have one report, it will be returned regardless of criteria</li>
+<li class="fragment">This function prioritizes characteristics of interest (e.g.&nbsp;sample type)</li>
+<li class="fragment">If patient only has one report, it will be returned regardless of criteria</li>
 </ul>
+</div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-10_20e2956152e3004e8e00305b0d65c320">
+<div id="jbaflqisbf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
+<thead style="border-style: none;">
+<tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Argument" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left;" bgcolor="#FFFFFF" valign="bottom" align="left">
+Argument
+</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Description" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left;" bgcolor="#FFFFFF" valign="bottom" align="left">
+Description
+</th>
+</tr>
+</thead>
+
+<tbody class="gt_table_body" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3;">
+<tr style="border-style: none;">
+<td headers="Argument" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
+data_cohort
+</td>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
+Output object of the create_analytic_cohort function.
+</td>
+</tr>
+<tr style="border-style: none;">
+<td headers="Argument" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
+oncotree_code
+</td>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
+Character vector specifying which sample OncoTree codes to keep. See ‘cpt_oncotree_code’ column of data_cohort.
+</td>
+</tr>
+<tr style="border-style: none;">
+<td headers="Argument" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
+sample_type
+</td>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
+Character specifying which type of genomic sample to prioritize. Options are ‘Primary’, ‘Local’, and ‘Metastasis’. Default is to not select a NGS sample based on the sample type.
+</td>
+</tr>
+<tr style="border-style: none;">
+<td headers="Argument" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
+min_max_time
+</td>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
+Character specifying if the first or last genomic sample recorded should be kept. Options are ‘min’ (first) and ‘max’ (last).
+</td>
+</tr>
+</tbody>
+
+</table>
+</div>
 </div>
 </section>
 <section id="select-one-sample-per-patient-1" class="slide level2" data-background-color="#fff2cc">
@@ -605,6 +668,7 @@ naaccr_sex_code
 </div>
 </div>
 </div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-11_def73f1cecdd3b4a7972f19e40b89b02">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">nrow</span>(nsclc_cohort<span class="sc">$</span>cohort_ngs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] 262</p>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>nsclc_samp <span class="ot">&lt;-</span> <span class="fu">select_unique_ngs</span>(</span>
@@ -616,6 +680,7 @@ naaccr_sex_code
 <span id="cb6-7"><a href="#cb6-7"></a></span>
 <span id="cb6-8"><a href="#cb6-8"></a><span class="fu">nrow</span>(nsclc_samp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] 241</p>
+</div>
 <p><img data-src="images/coding-icons.png" class="absolute" style="left: 0px; bottom: 25px; width: 110px; height: 65px; "></p>
 </section>
 <section id="format-data-in-analysis-ready-matrix" class="slide level2">
@@ -628,7 +693,8 @@ naaccr_sex_code
 <li class="fragment"><p>Each cell will have <code>0</code> if no alteration, <code>1</code> if altered, or <code>NA</code> if that gene was not tested in that patient.</p></li>
 </ul>
 </div>
-<div id="jbaflqisbf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-13_bd316313b071d7a40024220555e8f75e">
+<div id="yanltbadfy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
@@ -653,6 +719,9 @@ PIK3C2B
 </th>
 <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="PBRM1" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
 PBRM1
+</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="MYC.Del" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
+MYC.Del
 </th>
 </tr>
 </thead>
@@ -680,6 +749,9 @@ GENIE-DFCI-004022-1313
 <td headers="PBRM1" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
 NA
 </td>
+<td headers="MYC.Del" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+0
+</td>
 </tr>
 <tr style="border-style: none;">
 <td headers="sample_id" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
@@ -701,6 +773,9 @@ GENIE-DFCI-000013-8840
 0
 </td>
 <td headers="PBRM1" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+0
+</td>
+<td headers="MYC.Del" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
 0
 </td>
 </tr>
@@ -726,6 +801,9 @@ GENIE-DFCI-000136-6004
 <td headers="PBRM1" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
 0
 </td>
+<td headers="MYC.Del" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+0
+</td>
 </tr>
 <tr style="border-style: none;">
 <td headers="sample_id" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
@@ -747,6 +825,9 @@ GENIE-DFCI-000215-8010
 0
 </td>
 <td headers="PBRM1" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+0
+</td>
+<td headers="MYC.Del" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
 0
 </td>
 </tr>
@@ -772,10 +853,14 @@ GENIE-DFCI-000381-9526
 <td headers="PBRM1" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
 0
 </td>
+<td headers="MYC.Del" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+0
+</td>
 </tr>
 </tbody>
 
 </table>
+</div>
 </div>
 </section>
 <section id="get-data-in-standardized-format" class="slide level2">
@@ -798,7 +883,7 @@ GENIE-DFCI-000381-9526
 <p><br></p>
 <p><span class="emphasized">{gnomeR}</span> functions are designed to work with standard alteration data formats used in common platforms like cBioPortal.</p>
 <p><br></p>
-<p>GENIE CNA and fusion data is slightly different than this standard, therefore we need to reformat it using:</p>
+<p>GENIE CNA and fusion data are slightly different than this standard, therefore we need to reformat it using:</p>
 <ul>
 <li><p><code>gnomeR::reformat_fusions()</code></p></li>
 <li><p><code>gnomeR::pivot_cna_longer()</code></p></li>
@@ -813,8 +898,11 @@ GENIE-DFCI-000381-9526
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><span class="emphasized">Before:</span></p>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-14_25e857924a66d393765699b8232d35d2">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>fusions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="yanltbadfy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+</div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-15_f42b8812a6e9a2d1cd9e79da1a9930b4">
+<div id="kdlmshvvgp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
@@ -869,10 +957,14 @@ XPO1-USP34 fusion
 
 </table>
 </div>
+</div>
 </div><div class="column" style="width:50%;">
 <p><span class="emphasized">After:</span></p>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-16_5663cdb875474e2cf4a1429a959bd5ad">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">reformat_fusion</span>(fusions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="kdlmshvvgp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+</div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-17_43681ef0c96d70bc83c971642afc4b8f">
+<div id="zcahsulipp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
@@ -895,62 +987,6 @@ fusion
 <tbody class="gt_table_body" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3;">
 <tr style="border-style: none;">
 <td headers="sample_id" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-GENIE-MSK-P-0003446-T01-IM5
-</td>
-<td headers="site_1_hugo_symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-ALK
-</td>
-<td headers="site_2_hugo_symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-EML4
-</td>
-<td headers="fusion" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-ALK-EML4
-</td>
-</tr>
-<tr style="border-style: none;">
-<td headers="sample_id" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-GENIE-MSK-P-0003863-T01-IM5
-</td>
-<td headers="site_1_hugo_symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-FLT4
-</td>
-<td headers="site_2_hugo_symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-NA
-</td>
-<td headers="fusion" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-FLT4
-</td>
-</tr>
-<tr style="border-style: none;">
-<td headers="sample_id" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-GENIE-MSK-P-0004103-T01-IM5
-</td>
-<td headers="site_1_hugo_symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-BRAF
-</td>
-<td headers="site_2_hugo_symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-SND1
-</td>
-<td headers="fusion" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-BRAF-SND1
-</td>
-</tr>
-<tr style="border-style: none;">
-<td headers="sample_id" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-GENIE-MSK-P-0004336-T01-IM5
-</td>
-<td headers="site_1_hugo_symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-CD74
-</td>
-<td headers="site_2_hugo_symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-ROS1
-</td>
-<td headers="fusion" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-CD74-ROS1
-</td>
-</tr>
-<tr style="border-style: none;">
-<td headers="sample_id" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
 GENIE-MSK-P-0004827-T01-IM5
 </td>
 <td headers="site_1_hugo_symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
@@ -964,22 +1000,23 @@ TP53
 </td>
 </tr>
 <tr style="border-style: none;">
-<td headers="sample_id" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
+<td headers="sample_id" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; background-color: #E0FFFF;" bgcolor="#E0FFFF" valign="middle" align="left">
 GENIE-MSK-P-0004827-T01-IM5
 </td>
-<td headers="site_1_hugo_symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
+<td headers="site_1_hugo_symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; background-color: #E0FFFF;" bgcolor="#E0FFFF" valign="middle" align="left">
 USP34
 </td>
-<td headers="site_2_hugo_symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
+<td headers="site_2_hugo_symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; background-color: #E0FFFF;" bgcolor="#E0FFFF" valign="middle" align="left">
 XPO1
 </td>
-<td headers="fusion" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
+<td headers="fusion" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; background-color: #E0FFFF;" bgcolor="#E0FFFF" valign="middle" align="left">
 USP34-XPO1
 </td>
 </tr>
 </tbody>
 
 </table>
+</div>
 </div>
 </div>
 </div>
@@ -990,8 +1027,11 @@ USP34-XPO1
 <div class="columns">
 <div class="column" style="width:60%;">
 <p><span class="emphasized">Before:</span></p>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>cna[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="zcahsulipp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-18_15c2e28ff35cae99811361626aeadc44">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>cna</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-19_e6319721e6944ee75feacee87cbe7a0e">
+<div id="toqdxpvbtd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
@@ -1011,21 +1051,10 @@ GENIE.DFCI.002183.6917
 <tbody class="gt_table_body" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3;">
 <tr style="border-style: none;">
 <td headers="Hugo_Symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-ABCB11
+APC
 </td>
-<td headers="GENIE.DFCI.003908.234520" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-0
-</td>
-<td headers="GENIE.DFCI.002183.6917" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-0
-</td>
-</tr>
-<tr style="border-style: none;">
-<td headers="Hugo_Symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-ABL1
-</td>
-<td headers="GENIE.DFCI.003908.234520" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-0
+<td headers="GENIE.DFCI.003908.234520" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; background-color: #E0FFFF;" bgcolor="#E0FFFF" valign="middle" align="right">
+1
 </td>
 <td headers="GENIE.DFCI.002183.6917" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
 0
@@ -1033,47 +1062,49 @@ ABL1
 </tr>
 <tr style="border-style: none;">
 <td headers="Hugo_Symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-ABL2
+ARID1B
 </td>
-<td headers="GENIE.DFCI.003908.234520" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-NA
+<td headers="GENIE.DFCI.003908.234520" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; background-color: #E0FFFF;" bgcolor="#E0FFFF" valign="middle" align="right">
+-1
 </td>
 <td headers="GENIE.DFCI.002183.6917" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-NA
+0
 </td>
 </tr>
 <tr style="border-style: none;">
 <td headers="Hugo_Symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-ACTB
+BCL2
 </td>
-<td headers="GENIE.DFCI.003908.234520" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-NA
+<td headers="GENIE.DFCI.003908.234520" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; background-color: #E0FFFF;" bgcolor="#E0FFFF" valign="middle" align="right">
+-1
 </td>
 <td headers="GENIE.DFCI.002183.6917" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-NA
+0
 </td>
 </tr>
 <tr style="border-style: none;">
 <td headers="Hugo_Symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-ACTG1
+TP53
 </td>
 <td headers="GENIE.DFCI.003908.234520" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-NA
+0
 </td>
 <td headers="GENIE.DFCI.002183.6917" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-NA
+0
 </td>
 </tr>
 </tbody>
 
 </table>
 </div>
+</div>
 </div><div class="column" style="width:40%;">
 <p><span class="emphasized">After:</span></p>
-<div class="cell">
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-20_510117bdcdb4e4356a72c8c553c65fe4">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>gnomeR<span class="sc">::</span><span class="fu">pivot_cna_longer</span>(cna) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="toqdxpvbtd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-21_23865993a2ea9274efc0d672fcc30361">
+<div id="xsybvgmjfh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
@@ -1092,35 +1123,35 @@ alteration
 
 <tbody class="gt_table_body" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3;">
 <tr style="border-style: none;">
-<td headers="hugo_symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
+<td headers="hugo_symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; background-color: #E0FFFF;" bgcolor="#E0FFFF" valign="middle" align="left">
 APC
 </td>
-<td headers="sample_id" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
+<td headers="sample_id" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; background-color: #E0FFFF;" bgcolor="#E0FFFF" valign="middle" align="left">
 GENIE-DFCI-003908-234520
 </td>
-<td headers="alteration" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center;" valign="middle" align="center">
+<td headers="alteration" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; background-color: #E0FFFF;" bgcolor="#E0FFFF" valign="middle" align="center">
 gain
 </td>
 </tr>
 <tr style="border-style: none;">
-<td headers="hugo_symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
+<td headers="hugo_symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; background-color: #E0FFFF;" bgcolor="#E0FFFF" valign="middle" align="left">
 ARID1B
 </td>
-<td headers="sample_id" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
+<td headers="sample_id" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; background-color: #E0FFFF;" bgcolor="#E0FFFF" valign="middle" align="left">
 GENIE-DFCI-003908-234520
 </td>
-<td headers="alteration" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center;" valign="middle" align="center">
+<td headers="alteration" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; background-color: #E0FFFF;" bgcolor="#E0FFFF" valign="middle" align="center">
 loss
 </td>
 </tr>
 <tr style="border-style: none;">
-<td headers="hugo_symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
+<td headers="hugo_symbol" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; background-color: #E0FFFF;" bgcolor="#E0FFFF" valign="middle" align="left">
 BCL2
 </td>
-<td headers="sample_id" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
+<td headers="sample_id" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; background-color: #E0FFFF;" bgcolor="#E0FFFF" valign="middle" align="left">
 GENIE-DFCI-003908-234520
 </td>
-<td headers="alteration" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center;" valign="middle" align="center">
+<td headers="alteration" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; background-color: #E0FFFF;" bgcolor="#E0FFFF" valign="middle" align="center">
 loss
 </td>
 </tr>
@@ -1152,25 +1183,32 @@ gain
 </div>
 </div>
 </div>
+</div>
 
 <aside><div>
 <p>Documentation on data formats: https://docs.cbioportal.org/file-formats/</p>
 </div></aside></section>
 <section id="get-data-in-standardized-format-3" class="slide level2" data-background-color="#fff2cc">
 <h2><span class="emphasized">|</span> Get Data in Standardized Format</h2>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-22_5a76269c2208cb2e054ed7b0dc71af3a">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>mutations <span class="ot">&lt;-</span> nsclc_synapse_data<span class="sc">$</span>NSCLC_v2<span class="fl">.0</span><span class="sc">$</span>mutations_extended</span>
 <span id="cb11-2"><a href="#cb11-2"></a>cna <span class="ot">&lt;-</span> nsclc_synapse_data<span class="sc">$</span>NSCLC_v2<span class="fl">.0</span><span class="sc">$</span>cna</span>
 <span id="cb11-3"><a href="#cb11-3"></a>fusions <span class="ot">&lt;-</span> nsclc_synapse_data<span class="sc">$</span>NSCLC_v2<span class="fl">.0</span><span class="sc">$</span>fusions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><br></p>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-23_12a8ccf130409b6a245e3617f4ada139">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>reformat_fusions <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span><span class="fu">reformat_fusion</span>(fusions)</span>
 <span id="cb12-2"><a href="#cb12-2"></a></span>
 <span id="cb12-3"><a href="#cb12-3"></a><span class="fu">nrow</span>(reformat_fusions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] 538</p>
+</div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-24_0ebdf54c74636e8706bfc76ea5b8907a">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>reformat_cna <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span><span class="fu">pivot_cna_longer</span>(cna)</span>
 <span id="cb13-2"><a href="#cb13-2"></a></span>
 <span id="cb13-3"><a href="#cb13-3"></a><span class="fu">nrow</span>(reformat_cna)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] 38163</p>
-<p><img data-src="images/coding-icons.png" class="absolute" style="left: 0px; bottom: 0px; width: 100px; height: 65px; "></p>
+</div>
+<p><img data-src="images/coding-icons.png" class="absolute" style="left: 0px; bottom: 25px; width: 110px; height: 65px; "></p>
 </section>
 <section id="format-data-in-analysis-ready-matrix-1" class="slide level2">
 <h2>Format Data in Analysis-ready Matrix</h2>
@@ -1181,10 +1219,12 @@ gain
 </ul>
 </div>
 <p><span class="emphasized">Basic code:</span></p>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-25_fe840df437aa4ce69fc28e779a96b191">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
 <span id="cb14-2"><a href="#cb14-2"></a>  <span class="at">mutation =</span> mutations,</span>
 <span id="cb14-3"><a href="#cb14-3"></a>  <span class="at">cna =</span> reformat_cna,</span>
 <span id="cb14-4"><a href="#cb14-4"></a>  <span class="at">fusion =</span> reformat_fusions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="cohort-inclusion" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Cohort Inclusion</h2>
@@ -1194,7 +1234,7 @@ gain
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<ol start="2" type="1">
+<ol start="3" type="1">
 <li><span class="emphasized">Cohort Inclusion</span>
 <ul>
 <li>Samples with no alterations may be dropped when pulling raw genomic data</li>
@@ -1206,11 +1246,13 @@ gain
 <p><br></p>
 <div class="columns">
 <div class="column" style="width:60%;">
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-26_abfda98373302fee859678d28560bc19">
 <div class="sourceCode cell-code" id="cb15" data-code-line-numbers="5"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb15-1" class="hljs-ln-code"><a href="#cb15-1"></a>gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
 <span id="cb15-2" class="hljs-ln-code"><a href="#cb15-2"></a>  <span class="at">mutation =</span> mutations,</span>
 <span id="cb15-3" class="hljs-ln-code"><a href="#cb15-3"></a>  <span class="at">cna =</span> reformat_cna,</span>
 <span id="cb15-4" class="hljs-ln-code"><a href="#cb15-4"></a>  <span class="at">fusion =</span> reformat_fusions</span>
 <span id="cb15-5" class="hljs-ln-code"><a href="#cb15-5"></a>  <span class="at">samples =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div><div class="column" style="width:40%;">
 <p>The <code>samples</code> argument will ensure all study IDs have a row in resulting analysis data, even if they are not present in genomic files</p>
 </div>
@@ -1236,7 +1278,7 @@ gain
 <p><br></p>
 <div class="columns">
 <div class="column" style="width:60%;">
-<div class="cell" data-column-location="column-fragment">
+<div class="cell" data-column-location="column-fragment" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-27_aa5d8dec16a8e71a8c915c759b4c403a">
 <div class="sourceCode cell-code" id="cb16" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
 <span id="cb16-2"><a href="#cb16-2"></a>  <span class="at">mutation =</span> mutations,</span>
 <span id="cb16-3"><a href="#cb16-3"></a>  <span class="at">cna =</span> reformat_cna,</span>
@@ -1253,6 +1295,7 @@ gain
 <h2>Not All Patients Tested on Same Panel</h2>
 <p>To use <code>specify_panels</code>, we first need to create a data frame indicating which patient IDs were sequenced on which panels.</p>
 <p><br></p>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-28_00fe6cc88e622bd86cf1d0228793bcb0">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>nsclc_panels <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb17-2"><a href="#cb17-2"></a>  <span class="at">sample_id =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
 <span id="cb17-3"><a href="#cb17-3"></a>  <span class="at">panel_id =</span> nsclc_samp<span class="sc">$</span>cpt_seq_assay_id) <span class="sc">%&gt;%</span> </span>
@@ -1260,7 +1303,7 @@ gain
 <span id="cb17-5"><a href="#cb17-5"></a>                               panel_id, <span class="st">"no"</span>))</span>
 <span id="cb17-6"><a href="#cb17-6"></a></span>
 <span id="cb17-7"><a href="#cb17-7"></a>nsclc_panels <span class="sc">%&gt;%</span> <span class="fu">head</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="inoqavlhgk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="djjakoxcux" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
@@ -1327,13 +1370,14 @@ DFCI-ONCOPANEL-2
 
 </table>
 </div>
+</div>
 </section>
 <section id="not-all-patients-tested-on-same-panel-2" class="slide level2">
 <h2>Not All Patients Tested on Same Panel</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><span class="emphasized">Without Panel Annotation</span></p>
-<div class="cell small-code">
+<div class="cell small-code" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-29_7d5dccd84ec1c9181941905c77d5f020">
 <div class="sourceCode cell-code" id="cb18" data-code-line-numbers="6"><pre class="sourceCode numberSource r small-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>binmat1 <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
 <span id="cb18-2"><a href="#cb18-2"></a>  <span class="at">mutation =</span> mutations,</span>
 <span id="cb18-3"><a href="#cb18-3"></a>  <span class="at">cna =</span> reformat_cna,</span>
@@ -1341,7 +1385,8 @@ DFCI-ONCOPANEL-2
 <span id="cb18-5"><a href="#cb18-5"></a>  <span class="at">samples =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
 <span id="cb18-6"><a href="#cb18-6"></a>  <span class="at">specify_panel =</span> <span class="st">"no"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="xsybvgmjfh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-30_38175c20c260aabbda4e6ac3863445db">
+<div id="jyltpcmecj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
@@ -1452,9 +1497,10 @@ MSK-IMPACT468
 
 </table>
 </div>
+</div>
 </div><div class="column" style="width:50%;">
 <p><span class="emphasized">With Panel Annotation</span></p>
-<div class="cell small-code">
+<div class="cell small-code" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-31_24b780d80ee2ffd7401367d8be5f3802">
 <div class="sourceCode cell-code" id="cb19" data-code-line-numbers="6"><pre class="sourceCode numberSource r small-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>binmat2 <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
 <span id="cb19-2"><a href="#cb19-2"></a>  <span class="at">mutation =</span> mutations,</span>
 <span id="cb19-3"><a href="#cb19-3"></a>  <span class="at">cna =</span> reformat_cna,</span>
@@ -1462,7 +1508,8 @@ MSK-IMPACT468
 <span id="cb19-5"><a href="#cb19-5"></a>  <span class="at">samples =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
 <span id="cb19-6"><a href="#cb19-6"></a>  <span class="at">specify_panel =</span> nsclc_panels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="djjakoxcux" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-32_5f331069b26a75fe5de7d0b2ce2bde23">
+<div id="kwjgurnjsc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
@@ -1572,6 +1619,7 @@ NA
 </tbody>
 
 </table>
+</div>
 </div>
 </div>
 </div>
@@ -1595,7 +1643,7 @@ NA
 </div>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell small-code">
+<div class="cell small-code" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-33_b66852c5836cd4b8b65169703627e881">
 <div class="sourceCode cell-code" id="cb20" data-code-line-numbers="7"><pre class="sourceCode numberSource r small-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>no_recode <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
 <span id="cb20-2"><a href="#cb20-2"></a>  <span class="at">samples =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
 <span id="cb20-3"><a href="#cb20-3"></a>  <span class="at">mutation =</span> mutations,</span>
@@ -1605,7 +1653,7 @@ NA
 <span id="cb20-7"><a href="#cb20-7"></a>  <span class="at">recode_aliases =</span> <span class="st">"no"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="cell small-code">
+<div class="cell small-code" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-34_2e07ec185924856fd6a68d7f35192e0c">
 <div class="sourceCode cell-code" id="cb21" data-code-line-numbers="7"><pre class="sourceCode numberSource r small-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>recode <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
 <span id="cb21-2"><a href="#cb21-2"></a>  <span class="at">samples =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
 <span id="cb21-3"><a href="#cb21-3"></a>  <span class="at">mutation =</span> mutations,</span>
@@ -1617,19 +1665,24 @@ NA
 </div>
 </div>
 <p><br></p>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-35_10021145e5c52b1e359c9a004d5bef76">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">setdiff</span>(<span class="fu">names</span>(no_recode), <span class="fu">names</span>(recode)) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] “MRE11A” “RFWD2” “H3F3A” “FAM46C” “HIST1H3D” “WHSC1L1”</p>
+</div>
 </section>
 <section id="process-data-final-dataset" class="slide level2" data-background-color="#fff2cc">
 <h2><span class="emphasized">|</span> Process Data: Final Dataset</h2>
 <p>Let’s run <code>create_gene_binary()</code> with the <code>samples</code>, <code>specify_panel</code> and <code>recode_aliases</code> arguments.</p>
 <p>First we create <code>nsclc_panels</code>:</p>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-36_abfebfd2f1fede39e4bb2705b797ebbf">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>nsclc_panels <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb23-2"><a href="#cb23-2"></a>  <span class="at">sample_id =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
 <span id="cb23-3"><a href="#cb23-3"></a>  <span class="at">panel_id =</span> nsclc_samp<span class="sc">$</span>cpt_seq_assay_id) <span class="sc">%&gt;%</span> </span>
 <span id="cb23-4"><a href="#cb23-4"></a>  <span class="fu">mutate</span>(<span class="at">panel_id =</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(panel_id),</span>
 <span id="cb23-5"><a href="#cb23-5"></a>                               panel_id, <span class="st">"no"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Then run <code>create_gene_binary()</code>:</p>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-37_05a25d8dfac1b1666a05db723ed90007">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>gene_binary <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
 <span id="cb24-2"><a href="#cb24-2"></a>  <span class="at">mutation =</span> mutations,</span>
 <span id="cb24-3"><a href="#cb24-3"></a>  <span class="at">cna =</span> reformat_cna,</span>
@@ -1637,7 +1690,8 @@ NA
 <span id="cb24-5"><a href="#cb24-5"></a>  <span class="at">samples =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
 <span id="cb24-6"><a href="#cb24-6"></a>  <span class="at">specify_panel =</span> nsclc_panels, </span>
 <span id="cb24-7"><a href="#cb24-7"></a>  <span class="at">recode_aliases =</span> <span class="st">"impact"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img data-src="images/coding-icons.png" class="absolute" style="left: 0px; bottom: 0px; width: 100px; height: 65px; "></p>
+</div>
+<p><img data-src="images/coding-icons.png" class="absolute" style="left: 0px; bottom: 25px; width: 110px; height: 65px; "></p>
 </section></section>
 <section>
 <section id="analyzing-data" class="title-slide slide level1 center" data-background-color="#007CBA" style="text-align: center;">
@@ -1674,13 +1728,13 @@ NA
 <li class="fragment"><span class="emphasized">Limited Power To Detect Clinical Associations When Sparse Alterations</span></li>
 </ol>
 <ul>
-<li class="fragment">If biologically meaningful, you may want to summarize on alteration, gene or pathway Level</li>
+<li class="fragment">If biologically meaningful, you may want to summarize on gene or pathway level</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-38_fd5866f84862ae8f8ba50f5cd81595ff">
 
 </div>
 </section>
@@ -1688,19 +1742,21 @@ NA
 <h2>Case Study</h2>
 <p><br></p>
 <p><br></p>
+<div>
 <ul>
-<li>We will use the processed binary data frame data (<code>gene_binary</code>) to <span class="emphasized">summarize genomic alterations</span> overall in the cohort, and <span class="emphasized">by sex</span>.</li>
+<li class="fragment">We will use the processed binary data frame data (<code>gene_binary</code>) to <span class="emphasized">summarize genomic alterations</span> overall in the cohort, and <span class="emphasized">by sex</span>.</li>
 </ul>
 <p><br></p>
 <ul>
-<li>First, we need to join clinical data on <code>sex</code> to genomic data</li>
+<li class="fragment">First, we need to join clinical data on <code>sex</code> to genomic data</li>
 </ul>
+</div>
 </section>
 <section id="add-clinical-variable-to-data" class="slide level2" data-background-color="#fff2cc">
 <h2><span class="emphasized">|</span> Add Clinical Variable To Data</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
-<div class="cell">
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-39_a0b01b45a00b4f328cbacc218d01c171">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># get patient IDs and sample IDs</span></span>
 <span id="cb25-2"><a href="#cb25-2"></a>patient_index <span class="ot">&lt;-</span>  nsclc_cohort<span class="sc">$</span>cohort_ngs <span class="sc">%&gt;%</span></span>
 <span id="cb25-3"><a href="#cb25-3"></a>  <span class="fu">select</span>(record_id, cpt_genie_sample_id)</span>
@@ -1724,7 +1780,8 @@ NA
 <span id="cb25-21"><a href="#cb25-21"></a>  <span class="fu">tbl_summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:40%;">
-<div id="kwjgurnjsc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-40_79efeeb1595d0e7817417dc84b9f09fe">
+<div id="sasdwswoft" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
@@ -1775,7 +1832,8 @@ naaccr_sex_code
 </div>
 </div>
 </div>
-<p><img data-src="images/coding-icons.png" class="absolute" style="left: 0px; bottom: 0px; width: 100px; height: 65px; "></p>
+</div>
+<p><img data-src="images/coding-icons.png" class="absolute" style="left: 0px; bottom: 25px; width: 110px; height: 65px; "></p>
 </section>
 <section id="subset-by-a-prevalence-threshold" class="slide level2">
 <h2>Subset By a Prevalence Threshold</h2>
@@ -1800,25 +1858,29 @@ naaccr_sex_code
 </section>
 <section id="subset-by-40-threshold" class="slide level2" data-background-color="#fff2cc">
 <h2><span class="emphasized">|</span> Subset By 40% Threshold</h2>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-41_60fa84b84c2637dd46b83a0795089ddc">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">ncol</span>(gene_binary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] 1403</p>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>nscl_subset <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>nsclc_subset <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
 <span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">subset_by_frequency</span>(<span class="at">t =</span> .<span class="dv">4</span>, <span class="at">other_vars =</span> naaccr_sex_code)</span>
 <span id="cb27-3"><a href="#cb27-3"></a></span>
-<span id="cb27-4"><a href="#cb27-4"></a><span class="fu">ncol</span>(nscl_subset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-4"><a href="#cb27-4"></a><span class="fu">ncol</span>(nsclc_subset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] 6</p>
-<p><img data-src="images/coding-icons.png" class="absolute" style="left: 0px; bottom: 0px; width: 100px; height: 65px; "></p>
+</div>
+<p><img data-src="images/coding-icons.png" class="absolute" style="left: 0px; bottom: 25px; width: 110px; height: 65px; "></p>
 </section>
 <section id="subset-by-a-panel" class="slide level2">
 <h2>Subset by a Panel</h2>
 <p>Use <code>subset_by_panel()</code> to subset genes in a given targeted panel.</p>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-42_868f0d166453038086db0bbb123bce9c">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">ncol</span>(gene_binary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] 1403</p>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>nscl_subset_panel <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>nsclc_subset_panel <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
 <span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">subset_by_panel</span>(<span class="at">panel_id =</span> <span class="st">'IMPACT300'</span>, <span class="at">other_vars =</span> naaccr_sex_code)</span>
 <span id="cb29-3"><a href="#cb29-3"></a></span>
-<span id="cb29-4"><a href="#cb29-4"></a><span class="fu">ncol</span>(nscl_subset_panel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="fu">ncol</span>(nsclc_subset_panel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] 220</p>
+</div>
 </section>
 <section id="summarize-alterations-with-tbl_genomic" class="slide level2">
 <h2>Summarize Alterations with tbl_genomic()</h2>
@@ -1831,14 +1893,14 @@ naaccr_sex_code
 <section id="summarize-alterations-with-tbl_genomic-1" class="slide level2" data-background-color="#fff2cc">
 <h2><span class="emphasized">|</span> Summarize Alterations with tbl_genomic</h2>
 <p>Create a simple <code>tbl_genomic</code> object, then bold the labels.</p>
-<div class="cell columns column-output-location">
+<div class="cell columns column-output-location" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-43_efd1334da44771aea23760e34290731d">
 <div class="column">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>nscl_subset <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>nsclc_subset <span class="sc">%&gt;%</span> </span>
 <span id="cb30-2"><a href="#cb30-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>naaccr_sex_code) <span class="sc">%&gt;%</span></span>
 <span id="cb30-3"><a href="#cb30-3"></a>  <span class="fu">tbl_genomic</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb30-4"><a href="#cb30-4"></a>  <span class="fu">bold_labels</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
-<div id="bxotteagrz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="smgmfhfcvn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
@@ -1929,7 +1991,7 @@ JAZF1.Amp
 </div>
 </div>
 </div>
-<div class="cell columns column-output-location">
+<div class="cell columns column-output-location" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-44_6664847516889c21376b1a6a95217d55">
 <div class="column">
 <div class="sourceCode cell-code" id="cb31" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>tbl_gene <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
 <span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>naaccr_sex_code) <span class="sc">%&gt;%</span></span>
@@ -1939,7 +2001,7 @@ JAZF1.Amp
 <span id="cb31-6"><a href="#cb31-6"></a></span>
 <span id="cb31-7"><a href="#cb31-7"></a>tbl_gene</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
-<div id="sasdwswoft" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="oybfpksjth" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
@@ -2066,8 +2128,15 @@ JAZF1
 </div>
 </div>
 <p>Often we want to analyze alterations on the pathway level.</p>
-<p><img data-src="images/pathways.png" class="absolute" style="left: 250px; bottom: 15px; width: 400px; "></p>
-</section>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/pathways.png"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>Sanchez-Vega F, et al.&nbsp;Oncogenic Signaling Pathways in The Cancer Genome Atlas. Cell. 2018 Apr 5;173(2):321-337.e10. doi: 10.1016/j.cell.2018.03.035. PMID: 29625050; PMCID: PMC6070353.</p>
+</div></aside></section>
 <section id="summarize-oncogenic-pathways-1" class="slide level2">
 <h2>Summarize Oncogenic Pathways</h2>
 <div class="callout callout-note callout-style-simple">
@@ -2088,20 +2157,23 @@ JAZF1
 <p><br></p>
 <p>{gnomeR} offers several default pathways that can be added with <code>add_pathways()</code></p>
 <p><br></p>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-45_f176ac9355e38255590727f6d77f6cab">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>paths <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span>pathways <span class="sc">%&gt;%</span> <span class="fu">names</span>()</span>
 <span id="cb32-2"><a href="#cb32-2"></a>paths</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] “RTK/RAS” “Nrf2” “PI3K” “TGFB” “p53”<br>
 [6] “Wnt” “Myc” “Cell cycle” “Hippo” “Notch”</p>
+</div>
 </section>
 <section id="summarize-oncogenic-pathways-2" class="slide level2">
 <h2>Summarize Oncogenic Pathways</h2>
 <p>You can also add a custom pathway:</p>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-46_b79870016cd0e56b0fac45e3086d6efd">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>path_df <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
 <span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">add_pathways</span>(<span class="at">custom_pathways =</span> <span class="fu">c</span>(<span class="st">"SPOP.mut"</span>, <span class="st">"FOXA1.mut"</span>)) </span>
 <span id="cb33-3"><a href="#cb33-3"></a></span>
 <span id="cb33-4"><a href="#cb33-4"></a>path_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="st">"pathway_custom"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb33-5"><a href="#cb33-5"></a>  <span class="fu">tbl_summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="smgmfhfcvn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="gkafszclyu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
@@ -2135,12 +2207,13 @@ pathway_custom
 
 </table>
 </div>
+</div>
 <p><br></p>
 <p><strong>Note: You must specify <code>.mut</code>, <code>.Amp</code>, <code>.Del</code> for alterations <code>custom_pathways</code></strong></p>
 </section>
 <section id="summarize-alteration-pathways" class="slide level2" data-background-color="#fff2cc">
 <h2><span class="emphasized">|</span> Summarize Alteration Pathways</h2>
-<div class="cell columns column-output-location">
+<div class="cell columns column-output-location" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-47_df02ab4e6264f339511d53c71448498f">
 <div class="column">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>path_df <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
 <span id="cb34-2"><a href="#cb34-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>naaccr_sex_code) <span class="sc">%&gt;%</span></span>
@@ -2151,7 +2224,7 @@ pathway_custom
 <span id="cb34-7"><a href="#cb34-7"></a>  <span class="fu">tbl_summary</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb34-8"><a href="#cb34-8"></a>  <span class="fu">bold_labels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column fragment">
-<div id="oybfpksjth" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="rgjofqzxvi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
@@ -2259,12 +2332,13 @@ pathway_Notch
 </div>
 </div>
 </div>
-<p><img data-src="images/coding-icons.png" class="absolute" style="left: 0px; bottom: 0px; width: 100px; height: 65px; "></p>
+<p><img data-src="images/coding-icons.png" class="absolute" style="left: 0px; bottom: 25px; width: 110px; height: 65px; "></p>
 </section>
 <section id="comparing-alteration-frequencies-across-clinical-data" class="slide level2">
 <h2>Comparing Alteration Frequencies Across Clinical Data</h2>
 <p>We can easily compare frequencies by sex using the <code>by</code> argument:</p>
-<div class="cell columns column-output-location">
+<p><br></p>
+<div class="cell columns column-output-location" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-48_e83340d08a1c2002b3c9bc575ea4b6cc">
 <div class="column">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>tbl_gene <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
 <span id="cb35-2"><a href="#cb35-2"></a>  <span class="fu">subset_by_frequency</span>(</span>
@@ -2275,7 +2349,7 @@ pathway_Notch
 <span id="cb35-7"><a href="#cb35-7"></a></span>
 <span id="cb35-8"><a href="#cb35-8"></a>tbl_gene</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column fragment">
-<div id="gkafszclyu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ricfygffjd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
@@ -2408,7 +2482,12 @@ JAZF1.Amp
 </div>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>gene_binary <span class="sc">%&gt;%</span></span>
+<p>We can use {gtsummary}’s <code>add_p()</code> and <code>add_q()</code> for hypothesis testing</p>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-49_e0ba71e899c76f84907f043eaa9ea59a">
+<div class="sourceCode cell-code" id="cb36" data-code-line-numbers="8-9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>tbl_gene <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
 <span id="cb36-2"><a href="#cb36-2"></a>  <span class="fu">subset_by_frequency</span>(</span>
 <span id="cb36-3"><a href="#cb36-3"></a>    <span class="at">t =</span> .<span class="dv">4</span>,</span>
 <span id="cb36-4"><a href="#cb36-4"></a>    <span class="at">other_vars =</span> naaccr_sex_code) <span class="sc">%&gt;%</span></span>
@@ -2416,11 +2495,24 @@ JAZF1.Amp
 <span id="cb36-6"><a href="#cb36-6"></a>    <span class="at">by =</span> naaccr_sex_code) <span class="sc">%&gt;%</span></span>
 <span id="cb36-7"><a href="#cb36-7"></a>  <span class="fu">bold_labels</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb36-8"><a href="#cb36-8"></a>  <span class="fu">add_p</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb36-9"><a href="#cb36-9"></a>  <span class="fu">add_q</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-<img data-src="images/q-val-table.png" class="r-stretch quarto-figure-center"></section>
+<span id="cb36-9"><a href="#cb36-9"></a>  <span class="fu">add_q</span>()</span>
+<span id="cb36-10"><a href="#cb36-10"></a></span>
+<span id="cb36-11"><a href="#cb36-11"></a>tbl_gene</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/q-val-table.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section id="comparing-alteration-frequencies-across-clinical-data-2" class="slide level2" data-background-color="#fff2cc">
 <h2><span class="emphasized">|</span> Comparing Alteration Frequencies Across Clinical Data</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-50_d79c1672d69f983146e38382417f7fc6">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>tbl_gene <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
 <span id="cb37-2"><a href="#cb37-2"></a>  <span class="fu">subset_by_frequency</span>(</span>
 <span id="cb37-3"><a href="#cb37-3"></a>    <span class="at">t =</span> .<span class="dv">4</span>,</span>
@@ -2431,38 +2523,60 @@ JAZF1.Amp
 <span id="cb37-8"><a href="#cb37-8"></a>  <span class="fu">add_q</span>()</span>
 <span id="cb37-9"><a href="#cb37-9"></a></span>
 <span id="cb37-10"><a href="#cb37-10"></a>tbl_gene</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="images/q-val-table.png"></p>
 </figure>
 </div>
-<p><img data-src="images/coding-icons.png" class="absolute" style="left: 0px; bottom: 0px; width: 100px; height: 65px; "></p>
+</div>
+</div>
+<p><img data-src="images/coding-icons.png" class="absolute" style="left: 0px; bottom: 25px; width: 110px; height: 65px; "></p>
 </section>
 <section id="visualize-data" class="slide level2">
 <h2>Visualize Data</h2>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-51_99ce9830de5808c4d43897a3a5152c72">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>gnomeR<span class="sc">::</span><span class="fu">ggcomut</span>(nsclc_cohort<span class="sc">$</span>cohort_mutations_extended)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img data-src="r-medicine-genie-gnomer_files/figure-revealjs/unnamed-chunk-49-1.png" width="960"></p>
+
 </div>
-</section>
+<img data-src="r-medicine-genie-gnomer_files/figure-revealjs/unnamed-chunk-51-1.png" width="960" class="r-stretch"></section>
 <section id="visualize-data-1" class="slide level2">
 <h2>Visualize Data</h2>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-52_147bd57ae1a46ebd33bea04c1a812099">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>gnomeR<span class="sc">::</span><span class="fu">ggtopgenes</span>(nsclc_cohort<span class="sc">$</span>cohort_mutations_extended)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img data-src="r-medicine-genie-gnomer_files/figure-revealjs/unnamed-chunk-50-1.png" width="960"></p>
+
 </div>
-</section>
+<img data-src="r-medicine-genie-gnomer_files/figure-revealjs/unnamed-chunk-52-1.png" width="960" class="r-stretch"></section>
 <section id="additional-items-next-steps" class="slide level2">
 <h2>Additional Items &amp; Next Steps</h2>
 <ul>
-<li><p>Additional <span class="emphasis">visualizations</span> and <span class="emphasis">color palettes</span> useful for genomic data are available in {gnomeR} package</p></li>
+<li><p>Additional <span class="emphasized">visualizations</span> and <span class="emphasized">color palettes</span> useful for genomic data are available in {gnomeR} package</p></li>
 <li><p>Some data may require additional data checks. See <a href="https://mskcc-epi-bio.github.io/gnomeR/articles/qa-impact-data.html">{gnomeR vignette}</a> for helpful tips on data QA.</p></li>
-<li><p>It may be appropriate to <span class="emphasized">oncoKB annotate</span> your data and only analyze oncogenic mutations (see oncoKB.org for more information)</p></li>
+<li><p>It may be appropriate to <span class="emphasized">oncoKB annotate</span> your data and only analyze oncogenic mutations (see <a href="https://www.oncokb.org/">oncoKB.org</a> for more information).</p></li>
 <li><p>Some projects may utilize CNA Segmentation data. See <a href="https://mskcc-epi-bio.github.io/gnomeR">{gnomeR documentation}</a> for more information on available tools.</p></li>
 </ul>
-</section></section>
+</section>
+<section id="conclusion" class="slide level2">
+<h2>Conclusion</h2>
+<ul>
+<li><p>The <span class="emphasized">{genieBPC}</span> &amp; <span class="emphasized">{gnomeR}</span> R packages offer a reproducible pipeline to create cohorts for clinico-genomics analyses</p></li>
+<li><p><span class="emphasized">{genieBPC}</span> streamlines data access and clinical data processing from multiple clinical data files of varying structure to create analytic cohorts</p></li>
+<li><p><span class="emphasized">{gnomeR}</span> facilitates annotation and analysis of complicated genomic data.</p></li>
+</ul>
+
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/genie-gnomer-hex.png"></p>
+</figure>
+</div>
+<aside><div>
+<p><em>Note: {gnomeR} can be used for genomic data processing and analyses outside of the GENIE BPC project!</em></p>
+</div></aside></section></section>
 <section id="thank-you" class="title-slide slide level1 center" data-background-color="#007CBA" style="text-align: center;">
 <h1>Thank You!</h1>
+<p><br></p>
+<p>Thanks to Hannah Fuchs for contributions to slides and contributing {gnomeR} &amp; {genieBPC} authors: Michael Curry, Hannah Fuchs, Axel Martin, Arshi Arora</p>
 <div class="footer footer-default">
 
 </div>
@@ -2519,7 +2633,7 @@ JAZF1.Amp
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: 'c/t',
+        slideNumber: false,
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -2644,7 +2758,7 @@ JAZF1.Amp
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1050,
+        width: 1190,
 
         height: 700,
 
