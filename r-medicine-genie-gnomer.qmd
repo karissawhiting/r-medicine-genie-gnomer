@@ -780,9 +780,9 @@ gene_binary <- gnomeR::create_gene_binary(
 
 1)  [Multiple Testing and False Positives]{.emphasized}
 
--   Many hypothesis tests done simultaneously can lead to high rate of false positive findings.
+-   Many hypothesis tests done simultaneously can lead to false positive findings.
 -   Very low prevalence genes are often not very informative.
--   Choose a threshold (e.g. 1% or 5 %) *a prior* to limit number of hypothesis tests and consider reporting a q-value (adjusted for multiple testing).
+-   Choose a threshold (e.g. 1% or 5 %) *a priori* and consider reporting a q-value (adjusted for multiple testing).
 
 :::
 
