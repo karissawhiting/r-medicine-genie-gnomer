@@ -199,10 +199,14 @@ AACR Data Guide: https://www.aacr.org/wp-content/uploads/2020/02/20200127_GENIE_
 :::
 
 ::: incremental
--   Patients can have many NGS reports
+-   Some patients have multiple sequencing reports (e.g. pre & post treatment samples, primary and metastatic samples)
+    
+-   Two approaches to analysis:
+    1) Aggregate information across sequencing reports (e.g. “ever” altered)
+    2) Select one unique sequencing report -> [We focus on this approach]{.emphasized}
+
 -   We can use `select_unique_ngs()` to select 1 sample per patient
--   This function prioritizes characteristics of interest (e.g. sample type)
--   If patient only has one report, it will be returned regardless of criteria
+
 :::
 
 ```{r}
@@ -1189,6 +1193,9 @@ gnomeR::ggtopgenes(nsclc_cohort$cohort_mutations_extended)
 
 <br>
 
-Thanks to Hannah Fuchs for contributions to slides and contributing {gnomeR} & {genieBPC} authors: Michael Curry, Hannah Fuchs, Axel Martin, Arshi Arora
+Thanks to all {gnomeR} & {genieBPC} authors & contributors: 
+
+
+Michael Curry, Axel Martin, Arshi Arora, Allie Reiner, Akriti Mishra, Dan Sjoberg, Jessica Flynn, Caroline Kostrzewa, Christine Zhou, Esther Drill, Margie Hannum, and more.
 
 

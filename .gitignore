@@ -4,3 +4,5 @@
 .Ruserdata
 .DS_Store
 r-medicine-genie-gnomer_cache
+archive/*
+data/*
