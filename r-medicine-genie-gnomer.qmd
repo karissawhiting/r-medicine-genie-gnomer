@@ -470,30 +470,18 @@ Documentation on data formats: https://docs.cbioportal.org/file-formats/
 :::
 
 
-## [\|]{.emphasized} Get Data in Standardized Format {background-color="#fff2cc"}
-
-
-```{r}
+```{r, echo=FALSE, results='hide', warning=FALSE, message=FALSE}
 mutations <- nsclc_synapse_data$NSCLC_v2.0$mutations_extended
 cna <- nsclc_synapse_data$NSCLC_v2.0$cna
 fusions <- nsclc_synapse_data$NSCLC_v2.0$fusions
-```
-
-<br> 
-```{r}
 reformat_fusions <- gnomeR::reformat_fusion(fusions)
 
-nrow(reformat_fusions)
-```
 
-```{r }
 reformat_cna <- gnomeR::pivot_cna_longer(cna)
 
-nrow(reformat_cna)
-
 ```
 
-![](images/coding-icons.png){.absolute bottom="25" left="0" width="110" height="65"}
+
 
 ## Format Data in Analysis-ready Matrix
 
@@ -1167,10 +1155,6 @@ gnomeR::ggtopgenes(nsclc_cohort$cohort_mutations_extended)
 - Some data may require additional data checks. See [{gnomeR vignette}](https://mskcc-epi-bio.github.io/gnomeR/articles/qa-impact-data.html) for helpful tips on data QA. 
 
 -   It may be appropriate to [oncoKB annotate]{.emphasized} your data and only analyze oncogenic mutations (see [oncoKB.org](https://www.oncokb.org/) for more information).
-
--   Some projects may utilize CNA Segmentation data. See [{gnomeR documentation}](https://mskcc-epi-bio.github.io/gnomeR) for more information on available tools.
-
-
 
 
 ## Conclusion

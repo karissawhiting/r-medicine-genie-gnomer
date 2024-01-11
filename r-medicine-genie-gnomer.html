@@ -1178,28 +1178,6 @@ gain
 <aside><div>
 <p>Documentation on data formats: https://docs.cbioportal.org/file-formats/</p>
 </div></aside></section>
-<section id="get-data-in-standardized-format-3" class="slide level2" data-background-color="#fff2cc">
-<h2><span class="emphasized">|</span> Get Data in Standardized Format</h2>
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-22_5a76269c2208cb2e054ed7b0dc71af3a">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>mutations <span class="ot">&lt;-</span> nsclc_synapse_data<span class="sc">$</span>NSCLC_v2<span class="fl">.0</span><span class="sc">$</span>mutations_extended</span>
-<span id="cb11-2"><a href="#cb11-2"></a>cna <span class="ot">&lt;-</span> nsclc_synapse_data<span class="sc">$</span>NSCLC_v2<span class="fl">.0</span><span class="sc">$</span>cna</span>
-<span id="cb11-3"><a href="#cb11-3"></a>fusions <span class="ot">&lt;-</span> nsclc_synapse_data<span class="sc">$</span>NSCLC_v2<span class="fl">.0</span><span class="sc">$</span>fusions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><br></p>
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-23_12a8ccf130409b6a245e3617f4ada139">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>reformat_fusions <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span><span class="fu">reformat_fusion</span>(fusions)</span>
-<span id="cb12-2"><a href="#cb12-2"></a></span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="fu">nrow</span>(reformat_fusions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>[1] 538</p>
-</div>
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-24_0ebdf54c74636e8706bfc76ea5b8907a">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>reformat_cna <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span><span class="fu">pivot_cna_longer</span>(cna)</span>
-<span id="cb13-2"><a href="#cb13-2"></a></span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="fu">nrow</span>(reformat_cna)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>[1] 38163</p>
-</div>
-<p><img data-src="images/coding-icons.png" class="absolute" style="left: 0px; bottom: 25px; width: 110px; height: 65px; "></p>
-</section>
 <section id="format-data-in-analysis-ready-matrix-1" class="slide level2">
 <h2>Format Data in Analysis-ready Matrix</h2>
 <div>
@@ -1209,11 +1187,11 @@ gain
 </ul>
 </div>
 <p><span class="emphasized">Basic code:</span></p>
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-25_fe840df437aa4ce69fc28e779a96b191">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
-<span id="cb14-2"><a href="#cb14-2"></a>  <span class="at">mutation =</span> mutations,</span>
-<span id="cb14-3"><a href="#cb14-3"></a>  <span class="at">cna =</span> reformat_cna,</span>
-<span id="cb14-4"><a href="#cb14-4"></a>  <span class="at">fusion =</span> reformat_fusions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-23_6bfb885ecce73fc8e1ce9fbc5318eb8d">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="at">mutation =</span> mutations,</span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="at">cna =</span> reformat_cna,</span>
+<span id="cb11-4"><a href="#cb11-4"></a>  <span class="at">fusion =</span> reformat_fusions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="cohort-inclusion" class="slide level2" data-auto-animate="true">
@@ -1236,12 +1214,12 @@ gain
 <p><br></p>
 <div class="columns">
 <div class="column" style="width:60%;">
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-26_abfda98373302fee859678d28560bc19">
-<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="5"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb15-1" class="hljs-ln-code"><a href="#cb15-1"></a>gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
-<span id="cb15-2" class="hljs-ln-code"><a href="#cb15-2"></a>  <span class="at">mutation =</span> mutations,</span>
-<span id="cb15-3" class="hljs-ln-code"><a href="#cb15-3"></a>  <span class="at">cna =</span> reformat_cna,</span>
-<span id="cb15-4" class="hljs-ln-code"><a href="#cb15-4"></a>  <span class="at">fusion =</span> reformat_fusions</span>
-<span id="cb15-5" class="hljs-ln-code"><a href="#cb15-5"></a>  <span class="at">samples =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-24_6ddac3875602e4b3440bcb373f5b99f8">
+<div class="sourceCode cell-code" id="cb12" data-code-line-numbers="5"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb12-1" class="hljs-ln-code"><a href="#cb12-1"></a>gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
+<span id="cb12-2" class="hljs-ln-code"><a href="#cb12-2"></a>  <span class="at">mutation =</span> mutations,</span>
+<span id="cb12-3" class="hljs-ln-code"><a href="#cb12-3"></a>  <span class="at">cna =</span> reformat_cna,</span>
+<span id="cb12-4" class="hljs-ln-code"><a href="#cb12-4"></a>  <span class="at">fusion =</span> reformat_fusions</span>
+<span id="cb12-5" class="hljs-ln-code"><a href="#cb12-5"></a>  <span class="at">samples =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:40%;">
 <p>The <code>samples</code> argument will ensure all study IDs have a row in resulting analysis data, even if they are not present in genomic files</p>
@@ -1268,13 +1246,13 @@ gain
 <p><br></p>
 <div class="columns">
 <div class="column" style="width:60%;">
-<div class="cell" data-column-location="column-fragment" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-27_aa5d8dec16a8e71a8c915c759b4c403a">
-<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
-<span id="cb16-2"><a href="#cb16-2"></a>  <span class="at">mutation =</span> mutations,</span>
-<span id="cb16-3"><a href="#cb16-3"></a>  <span class="at">cna =</span> reformat_cna,</span>
-<span id="cb16-4"><a href="#cb16-4"></a>  <span class="at">fusion =</span> reformat_fusions,</span>
-<span id="cb16-5"><a href="#cb16-5"></a>  <span class="at">samples =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
-<span id="cb16-6"><a href="#cb16-6"></a>  <span class="at">specify_panel =</span> nsclc_panels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-column-location="column-fragment" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-25_3565aa21c0e574dd2bd75dba3e3550eb">
+<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="at">mutation =</span> mutations,</span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="at">cna =</span> reformat_cna,</span>
+<span id="cb13-4"><a href="#cb13-4"></a>  <span class="at">fusion =</span> reformat_fusions,</span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="at">samples =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
+<span id="cb13-6"><a href="#cb13-6"></a>  <span class="at">specify_panel =</span> nsclc_panels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:40%;">
 <p>The <code>specify_panels</code> argument can insert <code>NA</code>s when we know that gene was not tested for a specific set of patients.</p>
@@ -1285,14 +1263,14 @@ gain
 <h2>Not All Patients Tested on Same Panel</h2>
 <p>To use <code>specify_panels</code>, we first need to create a data frame indicating which patient IDs were sequenced on which panels.</p>
 <p><br></p>
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-28_00fe6cc88e622bd86cf1d0228793bcb0">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>nsclc_panels <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb17-2"><a href="#cb17-2"></a>  <span class="at">sample_id =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
-<span id="cb17-3"><a href="#cb17-3"></a>  <span class="at">panel_id =</span> nsclc_samp<span class="sc">$</span>cpt_seq_assay_id) <span class="sc">%&gt;%</span> </span>
-<span id="cb17-4"><a href="#cb17-4"></a>  <span class="fu">mutate</span>(<span class="at">panel_id =</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(panel_id),</span>
-<span id="cb17-5"><a href="#cb17-5"></a>                               panel_id, <span class="st">"no"</span>))</span>
-<span id="cb17-6"><a href="#cb17-6"></a></span>
-<span id="cb17-7"><a href="#cb17-7"></a>nsclc_panels <span class="sc">%&gt;%</span> <span class="fu">head</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-26_bd29c2487e4a54279f8fca41583d852d">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>nsclc_panels <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="at">sample_id =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
+<span id="cb14-3"><a href="#cb14-3"></a>  <span class="at">panel_id =</span> nsclc_samp<span class="sc">$</span>cpt_seq_assay_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">mutate</span>(<span class="at">panel_id =</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(panel_id),</span>
+<span id="cb14-5"><a href="#cb14-5"></a>                               panel_id, <span class="st">"no"</span>))</span>
+<span id="cb14-6"><a href="#cb14-6"></a></span>
+<span id="cb14-7"><a href="#cb14-7"></a>nsclc_panels <span class="sc">%&gt;%</span> <span class="fu">head</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="djjakoxcux" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
@@ -1367,15 +1345,15 @@ DFCI-ONCOPANEL-2
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><span class="emphasized">Without Panel Annotation</span></p>
-<div class="cell small-code" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-29_7d5dccd84ec1c9181941905c77d5f020">
-<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="6"><pre class="sourceCode numberSource r small-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>binmat1 <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
-<span id="cb18-2"><a href="#cb18-2"></a>  <span class="at">mutation =</span> mutations,</span>
-<span id="cb18-3"><a href="#cb18-3"></a>  <span class="at">cna =</span> reformat_cna,</span>
-<span id="cb18-4"><a href="#cb18-4"></a>  <span class="at">fusion =</span> reformat_fusions,</span>
-<span id="cb18-5"><a href="#cb18-5"></a>  <span class="at">samples =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
-<span id="cb18-6"><a href="#cb18-6"></a>  <span class="at">specify_panel =</span> <span class="st">"no"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell small-code" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-27_187aece371af68be3b2f712ef5e2af4a">
+<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="6"><pre class="sourceCode numberSource r small-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>binmat1 <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="at">mutation =</span> mutations,</span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="at">cna =</span> reformat_cna,</span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="at">fusion =</span> reformat_fusions,</span>
+<span id="cb15-5"><a href="#cb15-5"></a>  <span class="at">samples =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
+<span id="cb15-6"><a href="#cb15-6"></a>  <span class="at">specify_panel =</span> <span class="st">"no"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-30_38175c20c260aabbda4e6ac3863445db">
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-28_e9b910cde61d43d6a084951ed6b64ec0">
 <div id="jyltpcmecj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
@@ -1490,15 +1468,15 @@ MSK-IMPACT468
 </div>
 </div><div class="column" style="width:50%;">
 <p><span class="emphasized">With Panel Annotation</span></p>
-<div class="cell small-code" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-31_24b780d80ee2ffd7401367d8be5f3802">
-<div class="sourceCode cell-code" id="cb19" data-code-line-numbers="6"><pre class="sourceCode numberSource r small-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>binmat2 <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
-<span id="cb19-2"><a href="#cb19-2"></a>  <span class="at">mutation =</span> mutations,</span>
-<span id="cb19-3"><a href="#cb19-3"></a>  <span class="at">cna =</span> reformat_cna,</span>
-<span id="cb19-4"><a href="#cb19-4"></a>  <span class="at">fusion =</span> reformat_fusions,</span>
-<span id="cb19-5"><a href="#cb19-5"></a>  <span class="at">samples =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
-<span id="cb19-6"><a href="#cb19-6"></a>  <span class="at">specify_panel =</span> nsclc_panels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell small-code" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-29_5718258368cde230c8bc421be3cad05a">
+<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="6"><pre class="sourceCode numberSource r small-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>binmat2 <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="at">mutation =</span> mutations,</span>
+<span id="cb16-3"><a href="#cb16-3"></a>  <span class="at">cna =</span> reformat_cna,</span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="at">fusion =</span> reformat_fusions,</span>
+<span id="cb16-5"><a href="#cb16-5"></a>  <span class="at">samples =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
+<span id="cb16-6"><a href="#cb16-6"></a>  <span class="at">specify_panel =</span> nsclc_panels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-32_5f331069b26a75fe5de7d0b2ce2bde23">
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-30_8845a7938abb61ff698c52b19f2c0dd5">
 <div id="kwjgurnjsc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
@@ -1633,30 +1611,30 @@ NA
 </div>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell small-code" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-33_b66852c5836cd4b8b65169703627e881">
-<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="7"><pre class="sourceCode numberSource r small-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>no_recode <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
-<span id="cb20-2"><a href="#cb20-2"></a>  <span class="at">samples =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
-<span id="cb20-3"><a href="#cb20-3"></a>  <span class="at">mutation =</span> mutations,</span>
-<span id="cb20-4"><a href="#cb20-4"></a>  <span class="at">cna =</span> reformat_cna,</span>
-<span id="cb20-5"><a href="#cb20-5"></a>  <span class="at">fusion =</span> reformat_fusions,</span>
-<span id="cb20-6"><a href="#cb20-6"></a>  <span class="at">specify_panel =</span> nsclc_panels,</span>
-<span id="cb20-7"><a href="#cb20-7"></a>  <span class="at">recode_aliases =</span> <span class="st">"no"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell small-code" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-31_be59b72c74ca4f219f904d705bcf4b0d">
+<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="7"><pre class="sourceCode numberSource r small-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>no_recode <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="at">samples =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="at">mutation =</span> mutations,</span>
+<span id="cb17-4"><a href="#cb17-4"></a>  <span class="at">cna =</span> reformat_cna,</span>
+<span id="cb17-5"><a href="#cb17-5"></a>  <span class="at">fusion =</span> reformat_fusions,</span>
+<span id="cb17-6"><a href="#cb17-6"></a>  <span class="at">specify_panel =</span> nsclc_panels,</span>
+<span id="cb17-7"><a href="#cb17-7"></a>  <span class="at">recode_aliases =</span> <span class="st">"no"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="cell small-code" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-34_2e07ec185924856fd6a68d7f35192e0c">
-<div class="sourceCode cell-code" id="cb21" data-code-line-numbers="7"><pre class="sourceCode numberSource r small-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>recode <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="at">samples =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
-<span id="cb21-3"><a href="#cb21-3"></a>  <span class="at">mutation =</span> mutations,</span>
-<span id="cb21-4"><a href="#cb21-4"></a>  <span class="at">cna =</span> reformat_cna,</span>
-<span id="cb21-5"><a href="#cb21-5"></a>  <span class="at">fusion =</span> reformat_fusions,</span>
-<span id="cb21-6"><a href="#cb21-6"></a>  <span class="at">specify_panel =</span> nsclc_panels,</span>
-<span id="cb21-7"><a href="#cb21-7"></a>  <span class="at">recode_aliases =</span> <span class="st">"impact"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell small-code" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-32_c925687841ead132d2823c9e086660b8">
+<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="7"><pre class="sourceCode numberSource r small-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>recode <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
+<span id="cb18-2"><a href="#cb18-2"></a>  <span class="at">samples =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
+<span id="cb18-3"><a href="#cb18-3"></a>  <span class="at">mutation =</span> mutations,</span>
+<span id="cb18-4"><a href="#cb18-4"></a>  <span class="at">cna =</span> reformat_cna,</span>
+<span id="cb18-5"><a href="#cb18-5"></a>  <span class="at">fusion =</span> reformat_fusions,</span>
+<span id="cb18-6"><a href="#cb18-6"></a>  <span class="at">specify_panel =</span> nsclc_panels,</span>
+<span id="cb18-7"><a href="#cb18-7"></a>  <span class="at">recode_aliases =</span> <span class="st">"impact"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 <p><br></p>
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-35_10021145e5c52b1e359c9a004d5bef76">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">setdiff</span>(<span class="fu">names</span>(no_recode), <span class="fu">names</span>(recode)) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-33_bdb4123b66f264cbe64a1862172f3565">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">setdiff</span>(<span class="fu">names</span>(no_recode), <span class="fu">names</span>(recode)) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] “MRE11A” “RFWD2” “H3F3A” “FAM46C” “HIST1H3D” “WHSC1L1”</p>
 </div>
 </section>
@@ -1664,22 +1642,22 @@ NA
 <h2><span class="emphasized">|</span> Process Data: Final Dataset</h2>
 <p>Let’s run <code>create_gene_binary()</code> with the <code>samples</code>, <code>specify_panel</code> and <code>recode_aliases</code> arguments.</p>
 <p>First we create <code>nsclc_panels</code>:</p>
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-36_abfebfd2f1fede39e4bb2705b797ebbf">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>nsclc_panels <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb23-2"><a href="#cb23-2"></a>  <span class="at">sample_id =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
-<span id="cb23-3"><a href="#cb23-3"></a>  <span class="at">panel_id =</span> nsclc_samp<span class="sc">$</span>cpt_seq_assay_id) <span class="sc">%&gt;%</span> </span>
-<span id="cb23-4"><a href="#cb23-4"></a>  <span class="fu">mutate</span>(<span class="at">panel_id =</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(panel_id),</span>
-<span id="cb23-5"><a href="#cb23-5"></a>                               panel_id, <span class="st">"no"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-34_c50bb3fbcc62fd4fb91b921538d7d2ec">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>nsclc_panels <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="at">sample_id =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
+<span id="cb20-3"><a href="#cb20-3"></a>  <span class="at">panel_id =</span> nsclc_samp<span class="sc">$</span>cpt_seq_assay_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-4"><a href="#cb20-4"></a>  <span class="fu">mutate</span>(<span class="at">panel_id =</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(panel_id),</span>
+<span id="cb20-5"><a href="#cb20-5"></a>                               panel_id, <span class="st">"no"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then run <code>create_gene_binary()</code>:</p>
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-37_05a25d8dfac1b1666a05db723ed90007">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>gene_binary <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
-<span id="cb24-2"><a href="#cb24-2"></a>  <span class="at">mutation =</span> mutations,</span>
-<span id="cb24-3"><a href="#cb24-3"></a>  <span class="at">cna =</span> reformat_cna,</span>
-<span id="cb24-4"><a href="#cb24-4"></a>  <span class="at">fusion =</span> reformat_fusions,</span>
-<span id="cb24-5"><a href="#cb24-5"></a>  <span class="at">samples =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
-<span id="cb24-6"><a href="#cb24-6"></a>  <span class="at">specify_panel =</span> nsclc_panels, </span>
-<span id="cb24-7"><a href="#cb24-7"></a>  <span class="at">recode_aliases =</span> <span class="st">"impact"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-35_dead7b69afbac9e25a5ed71aa2d29ac8">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>gene_binary <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span><span class="fu">create_gene_binary</span>(</span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="at">mutation =</span> mutations,</span>
+<span id="cb21-3"><a href="#cb21-3"></a>  <span class="at">cna =</span> reformat_cna,</span>
+<span id="cb21-4"><a href="#cb21-4"></a>  <span class="at">fusion =</span> reformat_fusions,</span>
+<span id="cb21-5"><a href="#cb21-5"></a>  <span class="at">samples =</span> nsclc_samp<span class="sc">$</span>cpt_genie_sample_id,</span>
+<span id="cb21-6"><a href="#cb21-6"></a>  <span class="at">specify_panel =</span> nsclc_panels, </span>
+<span id="cb21-7"><a href="#cb21-7"></a>  <span class="at">recode_aliases =</span> <span class="st">"impact"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><img data-src="images/coding-icons.png" class="absolute" style="left: 0px; bottom: 25px; width: 110px; height: 65px; "></p>
 </section></section>
@@ -1743,31 +1721,31 @@ NA
 <h2><span class="emphasized">|</span> Add Clinical Variable To Data</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-39_a0b01b45a00b4f328cbacc218d01c171">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># get patient IDs and sample IDs</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a>patient_index <span class="ot">&lt;-</span>  nsclc_cohort<span class="sc">$</span>cohort_ngs <span class="sc">%&gt;%</span></span>
-<span id="cb25-3"><a href="#cb25-3"></a>  <span class="fu">select</span>(record_id, cpt_genie_sample_id)</span>
-<span id="cb25-4"><a href="#cb25-4"></a></span>
-<span id="cb25-5"><a href="#cb25-5"></a><span class="co"># Join sex data to patient ID index</span></span>
-<span id="cb25-6"><a href="#cb25-6"></a>select_clinical <span class="ot">&lt;-</span> nsclc_cohort<span class="sc">$</span>cohort_pt_char <span class="sc">%&gt;%</span></span>
-<span id="cb25-7"><a href="#cb25-7"></a>  <span class="fu">select</span>(record_id, naaccr_sex_code) <span class="sc">%&gt;%</span></span>
-<span id="cb25-8"><a href="#cb25-8"></a>  <span class="fu">left_join</span>(patient_index) </span>
-<span id="cb25-9"><a href="#cb25-9"></a></span>
-<span id="cb25-10"><a href="#cb25-10"></a><span class="co"># Join all to gene binary data</span></span>
-<span id="cb25-11"><a href="#cb25-11"></a>gene_binary <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span> </span>
-<span id="cb25-12"><a href="#cb25-12"></a>  <span class="fu">left_join</span>(select_clinical,</span>
-<span id="cb25-13"><a href="#cb25-13"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"sample_id"</span><span class="ot">=</span> <span class="st">"cpt_genie_sample_id"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb25-14"><a href="#cb25-14"></a>  <span class="fu">select</span>(<span class="sc">-</span>record_id)</span>
-<span id="cb25-15"><a href="#cb25-15"></a></span>
-<span id="cb25-16"><a href="#cb25-16"></a>gene_binary <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span> </span>
-<span id="cb25-17"><a href="#cb25-17"></a>  <span class="fu">select</span>(sample_id, naaccr_sex_code, <span class="fu">everything</span>())</span>
-<span id="cb25-18"><a href="#cb25-18"></a></span>
-<span id="cb25-19"><a href="#cb25-19"></a>gene_binary <span class="sc">%&gt;%</span></span>
-<span id="cb25-20"><a href="#cb25-20"></a>  <span class="fu">select</span>(naaccr_sex_code) <span class="sc">%&gt;%</span></span>
-<span id="cb25-21"><a href="#cb25-21"></a>  <span class="fu">tbl_summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-37_c860e0c1b8984bbb0e36dc97ff73d7ac">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># get patient IDs and sample IDs</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>patient_index <span class="ot">&lt;-</span>  nsclc_cohort<span class="sc">$</span>cohort_ngs <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a>  <span class="fu">select</span>(record_id, cpt_genie_sample_id)</span>
+<span id="cb22-4"><a href="#cb22-4"></a></span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="co"># Join sex data to patient ID index</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a>select_clinical <span class="ot">&lt;-</span> nsclc_cohort<span class="sc">$</span>cohort_pt_char <span class="sc">%&gt;%</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a>  <span class="fu">select</span>(record_id, naaccr_sex_code) <span class="sc">%&gt;%</span></span>
+<span id="cb22-8"><a href="#cb22-8"></a>  <span class="fu">left_join</span>(patient_index) </span>
+<span id="cb22-9"><a href="#cb22-9"></a></span>
+<span id="cb22-10"><a href="#cb22-10"></a><span class="co"># Join all to gene binary data</span></span>
+<span id="cb22-11"><a href="#cb22-11"></a>gene_binary <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span> </span>
+<span id="cb22-12"><a href="#cb22-12"></a>  <span class="fu">left_join</span>(select_clinical,</span>
+<span id="cb22-13"><a href="#cb22-13"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"sample_id"</span><span class="ot">=</span> <span class="st">"cpt_genie_sample_id"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-14"><a href="#cb22-14"></a>  <span class="fu">select</span>(<span class="sc">-</span>record_id)</span>
+<span id="cb22-15"><a href="#cb22-15"></a></span>
+<span id="cb22-16"><a href="#cb22-16"></a>gene_binary <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span> </span>
+<span id="cb22-17"><a href="#cb22-17"></a>  <span class="fu">select</span>(sample_id, naaccr_sex_code, <span class="fu">everything</span>())</span>
+<span id="cb22-18"><a href="#cb22-18"></a></span>
+<span id="cb22-19"><a href="#cb22-19"></a>gene_binary <span class="sc">%&gt;%</span></span>
+<span id="cb22-20"><a href="#cb22-20"></a>  <span class="fu">select</span>(naaccr_sex_code) <span class="sc">%&gt;%</span></span>
+<span id="cb22-21"><a href="#cb22-21"></a>  <span class="fu">tbl_summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:40%;">
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-40_79efeeb1595d0e7817417dc84b9f09fe">
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-38_8e56aac098bbd512662be036e492d3a4">
 <div id="sasdwswoft" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
@@ -1845,13 +1823,13 @@ naaccr_sex_code
 </section>
 <section id="subset-by-40-threshold" class="slide level2" data-background-color="#fff2cc">
 <h2><span class="emphasized">|</span> Subset By 40% Threshold</h2>
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-41_60fa84b84c2637dd46b83a0795089ddc">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">ncol</span>(gene_binary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-39_8d73359032745f9150260cdb974eba37">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">ncol</span>(gene_binary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] 1403</p>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>nsclc_subset <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">subset_by_frequency</span>(<span class="at">t =</span> .<span class="dv">4</span>, <span class="at">other_vars =</span> naaccr_sex_code)</span>
-<span id="cb27-3"><a href="#cb27-3"></a></span>
-<span id="cb27-4"><a href="#cb27-4"></a><span class="fu">ncol</span>(nsclc_subset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>nsclc_subset <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">subset_by_frequency</span>(<span class="at">t =</span> .<span class="dv">4</span>, <span class="at">other_vars =</span> naaccr_sex_code)</span>
+<span id="cb24-3"><a href="#cb24-3"></a></span>
+<span id="cb24-4"><a href="#cb24-4"></a><span class="fu">ncol</span>(nsclc_subset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] 6</p>
 </div>
 <p><img data-src="images/coding-icons.png" class="absolute" style="left: 0px; bottom: 25px; width: 110px; height: 65px; "></p>
@@ -1859,13 +1837,13 @@ naaccr_sex_code
 <section id="subset-by-a-panel" class="slide level2">
 <h2>Subset by a Panel</h2>
 <p>Use <code>subset_by_panel()</code> to subset genes in a given targeted panel.</p>
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-42_868f0d166453038086db0bbb123bce9c">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">ncol</span>(gene_binary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-40_f4f71d832fdd262e5556f167de73aa66">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">ncol</span>(gene_binary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] 1403</p>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>nsclc_subset_panel <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">subset_by_panel</span>(<span class="at">panel_id =</span> <span class="st">'IMPACT300'</span>, <span class="at">other_vars =</span> naaccr_sex_code)</span>
-<span id="cb29-3"><a href="#cb29-3"></a></span>
-<span id="cb29-4"><a href="#cb29-4"></a><span class="fu">ncol</span>(nsclc_subset_panel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>nsclc_subset_panel <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">subset_by_panel</span>(<span class="at">panel_id =</span> <span class="st">'IMPACT300'</span>, <span class="at">other_vars =</span> naaccr_sex_code)</span>
+<span id="cb26-3"><a href="#cb26-3"></a></span>
+<span id="cb26-4"><a href="#cb26-4"></a><span class="fu">ncol</span>(nsclc_subset_panel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] 220</p>
 </div>
 </section>
@@ -1880,12 +1858,12 @@ naaccr_sex_code
 <section id="summarize-alterations-with-tbl_genomic-1" class="slide level2" data-background-color="#fff2cc">
 <h2><span class="emphasized">|</span> Summarize Alterations with tbl_genomic</h2>
 <p>Create a simple <code>tbl_genomic</code> object, then bold the labels.</p>
-<div class="cell columns column-output-location" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-43_efd1334da44771aea23760e34290731d">
+<div class="cell columns column-output-location" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-41_bff7924810e0e9a81929a45319a06cba">
 <div class="column">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>nsclc_subset <span class="sc">%&gt;%</span> </span>
-<span id="cb30-2"><a href="#cb30-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>naaccr_sex_code) <span class="sc">%&gt;%</span></span>
-<span id="cb30-3"><a href="#cb30-3"></a>  <span class="fu">tbl_genomic</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb30-4"><a href="#cb30-4"></a>  <span class="fu">bold_labels</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>nsclc_subset <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>naaccr_sex_code) <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">tbl_genomic</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb27-4"><a href="#cb27-4"></a>  <span class="fu">bold_labels</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div id="smgmfhfcvn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
@@ -1978,15 +1956,15 @@ JAZF1.Amp
 </div>
 </div>
 </div>
-<div class="cell columns column-output-location" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-44_6664847516889c21376b1a6a95217d55">
+<div class="cell columns column-output-location" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-42_c96ef8b17a6971c148f9a6d67c6d8266">
 <div class="column">
-<div class="sourceCode cell-code" id="cb31" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>tbl_gene <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>naaccr_sex_code) <span class="sc">%&gt;%</span></span>
-<span id="cb31-3"><a href="#cb31-3"></a>  <span class="fu">summarize_by_gene</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb31-4"><a href="#cb31-4"></a>  <span class="fu">subset_by_frequency</span>(<span class="at">t =</span> .<span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb31-5"><a href="#cb31-5"></a>  <span class="fu">tbl_genomic</span>()</span>
-<span id="cb31-6"><a href="#cb31-6"></a></span>
-<span id="cb31-7"><a href="#cb31-7"></a>tbl_gene</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>tbl_gene <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>naaccr_sex_code) <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a>  <span class="fu">summarize_by_gene</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb28-4"><a href="#cb28-4"></a>  <span class="fu">subset_by_frequency</span>(<span class="at">t =</span> .<span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-5"><a href="#cb28-5"></a>  <span class="fu">tbl_genomic</span>()</span>
+<span id="cb28-6"><a href="#cb28-6"></a></span>
+<span id="cb28-7"><a href="#cb28-7"></a>tbl_gene</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div id="oybfpksjth" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
@@ -2144,9 +2122,9 @@ JAZF1
 <p><br></p>
 <p>{gnomeR} offers several default pathways that can be added with <code>add_pathways()</code></p>
 <p><br></p>
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-45_f176ac9355e38255590727f6d77f6cab">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>paths <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span>pathways <span class="sc">%&gt;%</span> <span class="fu">names</span>()</span>
-<span id="cb32-2"><a href="#cb32-2"></a>paths</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-43_2d496f574b1cff2d3d4b303deed0406a">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>paths <span class="ot">&lt;-</span> gnomeR<span class="sc">::</span>pathways <span class="sc">%&gt;%</span> <span class="fu">names</span>()</span>
+<span id="cb29-2"><a href="#cb29-2"></a>paths</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] “RTK/RAS” “Nrf2” “PI3K” “TGFB” “p53”<br>
 [6] “Wnt” “Myc” “Cell cycle” “Hippo” “Notch”</p>
 </div>
@@ -2154,12 +2132,12 @@ JAZF1
 <section id="summarize-oncogenic-pathways-2" class="slide level2">
 <h2>Summarize Oncogenic Pathways</h2>
 <p>You can also add a custom pathway:</p>
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-46_b79870016cd0e56b0fac45e3086d6efd">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>path_df <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
-<span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">add_pathways</span>(<span class="at">custom_pathways =</span> <span class="fu">c</span>(<span class="st">"SPOP.mut"</span>, <span class="st">"FOXA1.mut"</span>)) </span>
-<span id="cb33-3"><a href="#cb33-3"></a></span>
-<span id="cb33-4"><a href="#cb33-4"></a>path_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="st">"pathway_custom"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb33-5"><a href="#cb33-5"></a>  <span class="fu">tbl_summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-44_d22098467caccfa226468afde5b8f545">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>path_df <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a>  <span class="fu">add_pathways</span>(<span class="at">custom_pathways =</span> <span class="fu">c</span>(<span class="st">"SPOP.mut"</span>, <span class="st">"FOXA1.mut"</span>)) </span>
+<span id="cb30-3"><a href="#cb30-3"></a></span>
+<span id="cb30-4"><a href="#cb30-4"></a>path_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="st">"pathway_custom"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb30-5"><a href="#cb30-5"></a>  <span class="fu">tbl_summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="gkafszclyu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
@@ -2200,16 +2178,16 @@ pathway_custom
 </section>
 <section id="summarize-alteration-pathways" class="slide level2" data-background-color="#fff2cc">
 <h2><span class="emphasized">|</span> Summarize Alteration Pathways</h2>
-<div class="cell columns column-output-location" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-47_df02ab4e6264f339511d53c71448498f">
+<div class="cell columns column-output-location" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-45_d2d19dfc10c8c745f5ba8192463c7550">
 <div class="column">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>path_df <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>naaccr_sex_code) <span class="sc">%&gt;%</span></span>
-<span id="cb34-3"><a href="#cb34-3"></a>  <span class="fu">add_pathways</span>() </span>
-<span id="cb34-4"><a href="#cb34-4"></a></span>
-<span id="cb34-5"><a href="#cb34-5"></a>path_df <span class="sc">%&gt;%</span></span>
-<span id="cb34-6"><a href="#cb34-6"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"pathway"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb34-7"><a href="#cb34-7"></a>  <span class="fu">tbl_summary</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb34-8"><a href="#cb34-8"></a>  <span class="fu">bold_labels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>path_df <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>naaccr_sex_code) <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="#cb31-3"></a>  <span class="fu">add_pathways</span>() </span>
+<span id="cb31-4"><a href="#cb31-4"></a></span>
+<span id="cb31-5"><a href="#cb31-5"></a>path_df <span class="sc">%&gt;%</span></span>
+<span id="cb31-6"><a href="#cb31-6"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"pathway"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb31-7"><a href="#cb31-7"></a>  <span class="fu">tbl_summary</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb31-8"><a href="#cb31-8"></a>  <span class="fu">bold_labels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column fragment">
 <div id="rgjofqzxvi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
@@ -2325,16 +2303,16 @@ pathway_Notch
 <h2>Comparing Alteration Frequencies Across Clinical Data</h2>
 <p>We can easily compare frequencies by sex using the <code>by</code> argument:</p>
 <p><br></p>
-<div class="cell columns column-output-location" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-48_e83340d08a1c2002b3c9bc575ea4b6cc">
+<div class="cell columns column-output-location" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-46_eddc63773b7150217b1bf16a0f5e1116">
 <div class="column">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>tbl_gene <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
-<span id="cb35-2"><a href="#cb35-2"></a>  <span class="fu">subset_by_frequency</span>(</span>
-<span id="cb35-3"><a href="#cb35-3"></a>    <span class="at">t =</span> .<span class="dv">4</span>,</span>
-<span id="cb35-4"><a href="#cb35-4"></a>    <span class="at">other_vars =</span> naaccr_sex_code) <span class="sc">%&gt;%</span></span>
-<span id="cb35-5"><a href="#cb35-5"></a>  <span class="fu">tbl_genomic</span>(<span class="at">by =</span> naaccr_sex_code) <span class="sc">%&gt;%</span></span>
-<span id="cb35-6"><a href="#cb35-6"></a>  <span class="fu">bold_labels</span>() </span>
-<span id="cb35-7"><a href="#cb35-7"></a></span>
-<span id="cb35-8"><a href="#cb35-8"></a>tbl_gene</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>tbl_gene <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">subset_by_frequency</span>(</span>
+<span id="cb32-3"><a href="#cb32-3"></a>    <span class="at">t =</span> .<span class="dv">4</span>,</span>
+<span id="cb32-4"><a href="#cb32-4"></a>    <span class="at">other_vars =</span> naaccr_sex_code) <span class="sc">%&gt;%</span></span>
+<span id="cb32-5"><a href="#cb32-5"></a>  <span class="fu">tbl_genomic</span>(<span class="at">by =</span> naaccr_sex_code) <span class="sc">%&gt;%</span></span>
+<span id="cb32-6"><a href="#cb32-6"></a>  <span class="fu">bold_labels</span>() </span>
+<span id="cb32-7"><a href="#cb32-7"></a></span>
+<span id="cb32-8"><a href="#cb32-8"></a>tbl_gene</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column fragment">
 <div id="ricfygffjd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
@@ -2473,18 +2451,18 @@ JAZF1.Amp
 <p><br></p>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-49_e0ba71e899c76f84907f043eaa9ea59a">
-<div class="sourceCode cell-code" id="cb36" data-code-line-numbers="8-9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>tbl_gene <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
-<span id="cb36-2"><a href="#cb36-2"></a>  <span class="fu">subset_by_frequency</span>(</span>
-<span id="cb36-3"><a href="#cb36-3"></a>    <span class="at">t =</span> .<span class="dv">4</span>,</span>
-<span id="cb36-4"><a href="#cb36-4"></a>    <span class="at">other_vars =</span> naaccr_sex_code) <span class="sc">%&gt;%</span></span>
-<span id="cb36-5"><a href="#cb36-5"></a>  <span class="fu">tbl_genomic</span>(</span>
-<span id="cb36-6"><a href="#cb36-6"></a>    <span class="at">by =</span> naaccr_sex_code) <span class="sc">%&gt;%</span></span>
-<span id="cb36-7"><a href="#cb36-7"></a>  <span class="fu">bold_labels</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb36-8"><a href="#cb36-8"></a>  <span class="fu">add_p</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb36-9"><a href="#cb36-9"></a>  <span class="fu">add_q</span>()</span>
-<span id="cb36-10"><a href="#cb36-10"></a></span>
-<span id="cb36-11"><a href="#cb36-11"></a>tbl_gene</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-47_93596261f743236772817579316809ac">
+<div class="sourceCode cell-code" id="cb33" data-code-line-numbers="8-9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>tbl_gene <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">subset_by_frequency</span>(</span>
+<span id="cb33-3"><a href="#cb33-3"></a>    <span class="at">t =</span> .<span class="dv">4</span>,</span>
+<span id="cb33-4"><a href="#cb33-4"></a>    <span class="at">other_vars =</span> naaccr_sex_code) <span class="sc">%&gt;%</span></span>
+<span id="cb33-5"><a href="#cb33-5"></a>  <span class="fu">tbl_genomic</span>(</span>
+<span id="cb33-6"><a href="#cb33-6"></a>    <span class="at">by =</span> naaccr_sex_code) <span class="sc">%&gt;%</span></span>
+<span id="cb33-7"><a href="#cb33-7"></a>  <span class="fu">bold_labels</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb33-8"><a href="#cb33-8"></a>  <span class="fu">add_p</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb33-9"><a href="#cb33-9"></a>  <span class="fu">add_q</span>()</span>
+<span id="cb33-10"><a href="#cb33-10"></a></span>
+<span id="cb33-11"><a href="#cb33-11"></a>tbl_gene</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
@@ -2499,17 +2477,17 @@ JAZF1.Amp
 <h2><span class="emphasized">|</span> Comparing Alteration Frequencies Across Clinical Data</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-50_d79c1672d69f983146e38382417f7fc6">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>tbl_gene <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
-<span id="cb37-2"><a href="#cb37-2"></a>  <span class="fu">subset_by_frequency</span>(</span>
-<span id="cb37-3"><a href="#cb37-3"></a>    <span class="at">t =</span> .<span class="dv">4</span>,</span>
-<span id="cb37-4"><a href="#cb37-4"></a>    <span class="at">other_vars =</span> naaccr_sex_code) <span class="sc">%&gt;%</span></span>
-<span id="cb37-5"><a href="#cb37-5"></a>  <span class="fu">tbl_genomic</span>(<span class="at">by =</span> naaccr_sex_code) <span class="sc">%&gt;%</span></span>
-<span id="cb37-6"><a href="#cb37-6"></a>  <span class="fu">bold_labels</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb37-7"><a href="#cb37-7"></a>  <span class="fu">add_p</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb37-8"><a href="#cb37-8"></a>  <span class="fu">add_q</span>()</span>
-<span id="cb37-9"><a href="#cb37-9"></a></span>
-<span id="cb37-10"><a href="#cb37-10"></a>tbl_gene</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-48_187831a2adb297aacae9b4f5fee187b2">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>tbl_gene <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a>  <span class="fu">subset_by_frequency</span>(</span>
+<span id="cb34-3"><a href="#cb34-3"></a>    <span class="at">t =</span> .<span class="dv">4</span>,</span>
+<span id="cb34-4"><a href="#cb34-4"></a>    <span class="at">other_vars =</span> naaccr_sex_code) <span class="sc">%&gt;%</span></span>
+<span id="cb34-5"><a href="#cb34-5"></a>  <span class="fu">tbl_genomic</span>(<span class="at">by =</span> naaccr_sex_code) <span class="sc">%&gt;%</span></span>
+<span id="cb34-6"><a href="#cb34-6"></a>  <span class="fu">bold_labels</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb34-7"><a href="#cb34-7"></a>  <span class="fu">add_p</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb34-8"><a href="#cb34-8"></a>  <span class="fu">add_q</span>()</span>
+<span id="cb34-9"><a href="#cb34-9"></a></span>
+<span id="cb34-10"><a href="#cb34-10"></a>tbl_gene</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
@@ -2523,25 +2501,24 @@ JAZF1.Amp
 </section>
 <section id="visualize-data" class="slide level2">
 <h2>Visualize Data</h2>
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-51_99ce9830de5808c4d43897a3a5152c72">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>gnomeR<span class="sc">::</span><span class="fu">ggcomut</span>(nsclc_cohort<span class="sc">$</span>cohort_mutations_extended)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-49_5b947bbe36dfc8b3d96ff0b58043a40a">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>gnomeR<span class="sc">::</span><span class="fu">ggcomut</span>(nsclc_cohort<span class="sc">$</span>cohort_mutations_extended)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="r-medicine-genie-gnomer_files/figure-revealjs/unnamed-chunk-51-1.png" width="960" class="r-stretch"></section>
+<img data-src="r-medicine-genie-gnomer_files/figure-revealjs/unnamed-chunk-49-1.png" width="960" class="r-stretch"></section>
 <section id="visualize-data-1" class="slide level2">
 <h2>Visualize Data</h2>
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-52_147bd57ae1a46ebd33bea04c1a812099">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>gnomeR<span class="sc">::</span><span class="fu">ggtopgenes</span>(nsclc_cohort<span class="sc">$</span>cohort_mutations_extended)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-50_9a1e27f4513319dd26e0792beb3ebb93">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>gnomeR<span class="sc">::</span><span class="fu">ggtopgenes</span>(nsclc_cohort<span class="sc">$</span>cohort_mutations_extended)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="r-medicine-genie-gnomer_files/figure-revealjs/unnamed-chunk-52-1.png" width="960" class="r-stretch"></section>
+<img data-src="r-medicine-genie-gnomer_files/figure-revealjs/unnamed-chunk-50-1.png" width="960" class="r-stretch"></section>
 <section id="additional-items-next-steps" class="slide level2">
 <h2>Additional Items &amp; Next Steps</h2>
 <ul>
 <li><p>Additional <span class="emphasized">visualizations</span> and <span class="emphasized">color palettes</span> useful for genomic data are available in {gnomeR} package</p></li>
 <li><p>Some data may require additional data checks. See <a href="https://mskcc-epi-bio.github.io/gnomeR/articles/qa-impact-data.html">{gnomeR vignette}</a> for helpful tips on data QA.</p></li>
 <li><p>It may be appropriate to <span class="emphasized">oncoKB annotate</span> your data and only analyze oncogenic mutations (see <a href="https://www.oncokb.org/">oncoKB.org</a> for more information).</p></li>
-<li><p>Some projects may utilize CNA Segmentation data. See <a href="https://mskcc-epi-bio.github.io/gnomeR">{gnomeR documentation}</a> for more information on available tools.</p></li>
 </ul>
 </section>
 <section id="conclusion" class="slide level2">
