@@ -2473,46 +2473,20 @@ JAZF1.Amp
 </div>
 </div>
 </section>
-<section id="comparing-alteration-frequencies-across-clinical-data-2" class="slide level2" data-background-color="#fff2cc">
-<h2><span class="emphasized">|</span> Comparing Alteration Frequencies Across Clinical Data</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-48_187831a2adb297aacae9b4f5fee187b2">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>tbl_gene <span class="ot">&lt;-</span> gene_binary <span class="sc">%&gt;%</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a>  <span class="fu">subset_by_frequency</span>(</span>
-<span id="cb34-3"><a href="#cb34-3"></a>    <span class="at">t =</span> .<span class="dv">4</span>,</span>
-<span id="cb34-4"><a href="#cb34-4"></a>    <span class="at">other_vars =</span> naaccr_sex_code) <span class="sc">%&gt;%</span></span>
-<span id="cb34-5"><a href="#cb34-5"></a>  <span class="fu">tbl_genomic</span>(<span class="at">by =</span> naaccr_sex_code) <span class="sc">%&gt;%</span></span>
-<span id="cb34-6"><a href="#cb34-6"></a>  <span class="fu">bold_labels</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb34-7"><a href="#cb34-7"></a>  <span class="fu">add_p</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb34-8"><a href="#cb34-8"></a>  <span class="fu">add_q</span>()</span>
-<span id="cb34-9"><a href="#cb34-9"></a></span>
-<span id="cb34-10"><a href="#cb34-10"></a>tbl_gene</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/q-val-table.png"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><img data-src="images/coding-icons.png" class="absolute" style="left: 0px; bottom: 25px; width: 110px; height: 65px; "></p>
-</section>
 <section id="visualize-data" class="slide level2">
 <h2>Visualize Data</h2>
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-49_5b947bbe36dfc8b3d96ff0b58043a40a">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>gnomeR<span class="sc">::</span><span class="fu">ggcomut</span>(nsclc_cohort<span class="sc">$</span>cohort_mutations_extended)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-48_58de1875ef71b7fd2c223608aa014789">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>gnomeR<span class="sc">::</span><span class="fu">ggcomut</span>(nsclc_cohort<span class="sc">$</span>cohort_mutations_extended)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="r-medicine-genie-gnomer_files/figure-revealjs/unnamed-chunk-48-1.png" width="960" class="r-stretch"></section>
+<section id="visualize-data-1" class="slide level2">
+<h2>Visualize Data</h2>
+<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-49_ec0bbbbe7ba93790166dfe0e66b1fc96">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>gnomeR<span class="sc">::</span><span class="fu">ggtopgenes</span>(nsclc_cohort<span class="sc">$</span>cohort_mutations_extended)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="r-medicine-genie-gnomer_files/figure-revealjs/unnamed-chunk-49-1.png" width="960" class="r-stretch"></section>
-<section id="visualize-data-1" class="slide level2">
-<h2>Visualize Data</h2>
-<div class="cell" data-hash="r-medicine-genie-gnomer_cache/revealjs/unnamed-chunk-50_9a1e27f4513319dd26e0792beb3ebb93">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>gnomeR<span class="sc">::</span><span class="fu">ggtopgenes</span>(nsclc_cohort<span class="sc">$</span>cohort_mutations_extended)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="r-medicine-genie-gnomer_files/figure-revealjs/unnamed-chunk-50-1.png" width="960" class="r-stretch"></section>
 <section id="additional-items-next-steps" class="slide level2">
 <h2>Additional Items &amp; Next Steps</h2>
 <ul>

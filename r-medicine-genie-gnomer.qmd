@@ -1098,42 +1098,6 @@ tbl_gene
 
 ::::
 
-## [\|]{.emphasized} Comparing Alteration Frequencies Across Clinical Data {background-color="#fff2cc"}
-
-:::: {.columns}
-
-::: {.column width="50%"}
-
-
-```{r}
-#| eval: false
-
-tbl_gene <- gene_binary %>%
-  subset_by_frequency(
-    t = .4,
-    other_vars = naaccr_sex_code) %>%
-  tbl_genomic(by = naaccr_sex_code) %>%
-  bold_labels() %>%
-  add_p() %>%
-  add_q()
-
-tbl_gene
-
-```
-
-:::
-
-
-::: {.column width="50%"}
-
-
-![](images/q-val-table.png){fig-align="center"}
-
-:::
-
-::::
-
-![](images/coding-icons.png){.absolute bottom="25" left="0" width="110" height="65"}
 
 
 ## Visualize Data
